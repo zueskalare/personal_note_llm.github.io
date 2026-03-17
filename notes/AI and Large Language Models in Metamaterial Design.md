@@ -9,8 +9,6 @@ alias:
 ---
 
 
-> **Compiled Review — March 2026 | 210+ References | Covers: Electromagnetic · Photonic · Acoustic · Mechanical · Thermal Metamaterials**
-
 ---
 
 ## Table of Contents
@@ -429,7 +427,7 @@ The convergence of AI and metamaterial science promises to accelerate the discov
     
 16. Lu W, Luu RK, Buehler MJ. "Fine-Tuning Large Language Models for Domain Adaptation." _npj Computational Materials_, 11, 84, 2024. https://www.nature.com/articles/s41524-025-01564-y
     
-17. Gruver N, et al. "Fine-tuned language models generate stable inorganic materials as text." _ICLR 2024_. https://openreview.net/forum?id=iSAgvYhHMT
+17. Gruver N, et al. "Fine-tuned language models generate stable inorganic materials as text." _ICLR 2024_. https://arxiv.org/abs/2402.04379
     
 18. Buehler MJ. "MechGPT, a Language-Based Strategy for Mechanics and Materials Modeling." _Journal of Applied Mechanics_, 2024. https://doi.org/10.1115/1.4063843
     

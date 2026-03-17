@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI and Large Language Models in Metamaterial Design: A Comprehensive Review (2020–2025)</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a2e;
+            --accent: #2c3e6b;
+            --link: #2563eb;
+            --link-hover: #1d4ed8;
+            --border: #e2e8f0;
+            --code-bg: #f1f5f9;
+            --blockquote-bg: #f8fafc;
+            --blockquote-border: #3b82f6;
+            --table-header-bg: #f1f5f9;
+            --table-border: #cbd5e1;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            max-width: 52em;
+            margin: 0 auto;
+            padding: 2em 1.5em 4em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1em;
+            font-size: 0.95em;
+            color: var(--link);
+        }
+        .back-link:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 1.8em;
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.4em;
+            margin: 0.5em 0 0.8em;
+            line-height: 1.3;
+        }
+        h2 {
+            font-size: 1.45em;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.3em;
+            margin: 1.8em 0 0.6em;
+        }
+        h3 {
+            font-size: 1.15em;
+            color: var(--accent);
+            margin: 1.4em 0 0.5em;
+        }
+        h4 {
+            font-size: 1.05em;
+            color: var(--accent);
+            margin: 1.2em 0 0.4em;
+        }
+        p {
+            margin: 0.6em 0;
+            text-align: justify;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+        blockquote {
+            background: var(--blockquote-bg);
+            border-left: 4px solid var(--blockquote-border);
+            padding: 0.8em 1.2em;
+            margin: 1em 0;
+            font-style: italic;
+        }
+        blockquote p {
+            margin: 0.3em 0;
+        }
+        ul, ol {
+            margin: 0.6em 0 0.6em 1.8em;
+        }
+        li {
+            margin: 0.3em 0;
+        }
+        li ul {
+            margin: 0.2em 0 0.2em 1.5em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+            font-size: 0.92em;
+        }
+        th, td {
+            border: 1px solid var(--table-border);
+            padding: 0.55em 0.8em;
+            text-align: left;
+        }
+        th {
+            background: var(--table-header-bg);
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2em 0;
+        }
+        img {
+            display: block;
+            margin: 1em auto;
+            max-width: 100%;
+            height: auto;
+        }
+        strong {
+            font-weight: 700;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 1em 0.8em 2em;
+            }
+            table {
+                font-size: 0.82em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">&larr; Back to Home</a>
+    <h1>AI and Large Language Models in Metamaterial Design: A Comprehensive Review (2020&ndash;2025)</h1>
+
+<blockquote><p><strong>Compiled Review &mdash; March 2026 | 210+ References | Covers: Electromagnetic &middot; Photonic &middot; Acoustic &middot; Mechanical &middot; Thermal Metamaterials</strong></p></blockquote>
+
+<hr>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+<li><a href="#1-abstract">1. Abstract</a></li>
+<li><a href="#2-introduction">2. Introduction</a></li>
+<li><a href="#3-metamaterial-taxonomy">3. Metamaterial Taxonomy</a></li>
+<li><a href="#4-machine-learning-and-deep-learning-methodologies">4. Machine Learning and Deep Learning Methodologies</a>
+    <ul>
+    <li><a href="#41-supervised-forward-prediction">4.1 Supervised Forward Prediction</a></li>
+    <li><a href="#42-inverse-design--tandem-and-bidirectional-networks">4.2 Inverse Design &mdash; Tandem and Bidirectional Networks</a></li>
+    <li><a href="#43-generative-models">4.3 Generative Models</a></li>
+    <li><a href="#44-physics-informed-neural-networks-pinns">4.4 Physics-Informed Neural Networks (PINNs)</a></li>
+    <li><a href="#45-reinforcement-learning">4.5 Reinforcement Learning</a></li>
+    <li><a href="#46-active-learning-and-bayesian-optimization">4.6 Active Learning and Bayesian Optimization</a></li>
+    <li><a href="#47-graph-neural-networks">4.7 Graph Neural Networks</a></li>
+    </ul>
+</li>
+<li><a href="#5-large-language-models-in-metamaterial-design">5. Large Language Models in Metamaterial Design</a>
+    <ul>
+    <li><a href="#51-fine-tuned-llms-for-spectral-prediction">5.1 Fine-Tuned LLMs for Spectral Prediction</a></li>
+    <li><a href="#52-llms-for-porous-metamaterial-generation">5.2 LLMs for Porous Metamaterial Generation</a></li>
+    <li><a href="#53-multi-agent-llm-frameworks">5.3 Multi-Agent LLM Frameworks</a></li>
+    <li><a href="#54-language-guided-design-linguamate">5.4 Language-Guided Design LINGUAMATE</a></li>
+    <li><a href="#55-llms-as-physics-educators">5.5 LLMs as Physics Educators</a></li>
+    <li><a href="#56-foundation-models-and-protein-inspired-analogs">5.6 Foundation Models and Protein-Inspired Analogs</a></li>
+    </ul>
+</li>
+<li><a href="#6-electromagnetic-and-microwave-metamaterials">6. Electromagnetic and Microwave Metamaterials</a></li>
+<li><a href="#7-photonic-metamaterials-and-nanophotonics">7. Photonic Metamaterials and Nanophotonics</a></li>
+<li><a href="#8-acoustic-and-elastic-metamaterials">8. Acoustic and Elastic Metamaterials</a></li>
+<li><a href="#9-mechanical-metamaterials">9. Mechanical Metamaterials</a></li>
+<li><a href="#10-thermal-metamaterials">10. Thermal Metamaterials</a></li>
+<li><a href="#11-fabrication-integration-and-multiscale-modeling">11. Fabrication Integration and Multiscale Modeling</a></li>
+<li><a href="#12-challenges-and-future-outlook">12. Challenges and Future Outlook</a></li>
+<li><a href="#13-conclusion">13. Conclusion</a></li>
+<li><a href="#14-references">14. References</a></li>
+</ul>
+
+<hr>
+
+<h2 id="1-abstract">1. Abstract</h2>
+
+<p>This comprehensive review synthesizes over 210 publications spanning 2020&ndash;2025 on the application of machine learning (ML), deep learning (DL), and large language models (LLMs) to metamaterial design across acoustic, electromagnetic, mechanical, photonic, and thermal domains. We categorize methodological approaches &mdash; forward prediction, inverse design, generative models, reinforcement learning, physics-informed neural networks, and LLM-guided design &mdash; and survey their adoption across metamaterial subfields. We identify key trends, benchmark achievements, and persistent challenges including data scarcity, interpretability, multiphysics coupling, and fabrication constraints. This review serves both newcomers and specialists seeking an integrated perspective on the data-driven metamaterial design landscape.</p>
+
+<p><strong>Keywords:</strong> metamaterials, machine learning, deep learning, large language models, inverse design, generative models, phononic crystals, metasurfaces, physics-informed neural networks, topology optimization</p>
+
+<hr>
+
+<h2 id="2-introduction">2. Introduction</h2>
+
+<p>Metamaterials are engineered structures whose properties arise from artificially designed micro- and nanoarchitectures rather than from chemical composition alone [1, 168, 169, 170]. Since Veselago's theoretical prediction of negative-index materials and Pendry's implementation of the double-negative medium, metamaterial research has expanded dramatically to encompass electromagnetic cloaking, superlensing, acoustic wave steering, mechanical energy absorption, and thermal management [168, 171, 172]. The defining advantage of metamaterials over natural materials is the ability to achieve on-demand properties &mdash; negative Poisson's ratio, zero-index refraction, unidirectional wave propagation &mdash; by tailoring geometry at subwavelength scales.</p>
+
+<p>Despite this promise, conventional design pipelines rely on iterative trial-and-error combined with computationally intensive finite-element (FEM) or finite-difference time-domain (FDTD) simulations. Exploring the vast parameter space of a metamaterial unit cell demands millions of evaluations, making brute-force search intractable. Physics-based optimization methods (genetic algorithms, gradient descent, topology optimization) offer structured exploration but are often sensitive to initial conditions and struggle with non-convex multimodal landscapes [1, 5].</p>
+
+<p>Over the past five years, machine learning has emerged as a transformative toolkit for metamaterial design [1&ndash;10]. Neural networks, once proven in image recognition and natural language processing, now serve as ultra-fast surrogates for physics simulators, reducing design cycles from hours to milliseconds. Generative models enable the synthesis of entirely novel microstructures beyond the reach of parameter sweeps. Reinforcement learning autonomously optimizes metamaterial configurations. Most recently, large language models (LLMs) fine-tuned on metamaterial datasets have demonstrated remarkable capability for forward prediction, inverse reasoning, and language-guided design workflows [11&ndash;15].</p>
+
+<p>This review is organized as follows. Section 3 introduces the metamaterial taxonomy. Section 4 surveys ML/DL methodologies. Section 5 reviews LLM applications specifically. Sections 6&ndash;10 cover domain-specific advances in electromagnetic, photonic, acoustic, mechanical, and thermal metamaterials. Section 11 addresses fabrication and multiscale considerations. Section 12 discusses open challenges and future outlook. Section 13 concludes.</p>
+
+<hr>
+
+<h2 id="3-metamaterial-taxonomy">3. Metamaterial Taxonomy</h2>
+
+<p>Metamaterials can be classified by the physical wave they manipulate and by their structural geometry. The table below provides a high-level taxonomy relevant to ML-aided design efforts covered in this review.</p>
+
+<table>
+<thead>
+<tr><th>Domain</th><th>Key Properties</th><th>Representative ML-Aided Applications</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Electromagnetic / Microwave</strong></td><td>Negative permittivity/permeability, cloaking</td><td>Absorber design, beam steering, FSS, RCS reduction</td></tr>
+<tr><td><strong>Photonic / Optical</strong></td><td>Subwavelength light manipulation, structural color, holography</td><td>Inverse metasurface design, metalens optimization, nonlinear optics</td></tr>
+<tr><td><strong>Acoustic / Phononic</strong></td><td>Band gap engineering, wave steering, noise control</td><td>Phononic crystal design, vibration attenuation, energy harvesting</td></tr>
+<tr><td><strong>Mechanical</strong></td><td>Auxetic behavior, programmable stiffness, negative Poisson's ratio</td><td>Topology optimization, additive manufacturing, impact resistance</td></tr>
+<tr><td><strong>Thermal</strong></td><td>Thermal cloaking, thermal diodes, anisotropic conductivity</td><td>Metastructure surrogate modeling, Bayesian optimization</td></tr>
+<tr><td><strong>Terahertz (THz)</strong></td><td>Bandpass filtering, biosensing, 6G communication</td><td>DNN-based absorber design, transformer-based sensor optimization</td></tr>
+</tbody>
+</table>
+
+<blockquote><p><strong>Note:</strong> Electromagnetic and photonic metamaterials dominate the literature, constituting approximately 55% of ML-aided design studies reviewed.</p></blockquote>
+
+<hr>
+
+<h2 id="4-machine-learning-and-deep-learning-methodologies">4. Machine Learning and Deep Learning Methodologies</h2>
+
+<p>We organize ML/DL approaches along a spectrum from purely data-driven supervised forward prediction to generative and autonomous optimization.</p>
+
+<h3 id="41-supervised-forward-prediction">4.1 Supervised Forward Prediction</h3>
+
+<p>The simplest and most common application of ML in metamaterial research is the <strong>forward prediction problem</strong>: given a structural description (geometry parameters, unit cell topology), predict the physical response (absorption spectrum, band gap, scattering cross-section). Feedforward neural networks (FNNs) and multilayer perceptrons (MLPs) were among the first architectures deployed [95]. Convolutional neural networks (CNNs) excel at extracting spatial features from 2D/3D unit cell images [64]. Training datasets are generated via simulation (FEM, FDTD) and the neural network serves as a fast surrogate for repeated evaluations [83, 84].</p>
+
+<p>Surrogate models trained on metamaterial datasets achieve prediction accuracies within 1&ndash;5% of full-wave simulations while reducing computational cost by <strong>3&ndash;5 orders of magnitude</strong> [83]. For example, a DNN surrogate replacing FEM in an acoustic metamaterial design loop reduced absorption coefficient prediction time by a factor of 4,500 [58]. Graph neural networks (GNNs) handle irregular geometries and truss-based metamaterials through topology-aware message passing [41, 42, 57].</p>
+
+<h3 id="42-inverse-design--tandem-and-bidirectional-networks">4.2 Inverse Design &mdash; Tandem and Bidirectional Networks</h3>
+
+<p><strong>Inverse design</strong> &mdash; predicting the geometry that achieves a desired response &mdash; is the central challenge in metamaterial ML. The problem is fundamentally ill-posed: multiple geometries can produce the same spectrum. Tandem neural networks (TNNs) address this by coupling a forward predictor with an inverse generator [181]. During training, the forward network is frozen, and only the inverse network is updated by minimizing prediction error through the tandem chain [16, 89]. Bidirectional networks simultaneously learn forward and inverse mappings, improving consistency [94]. Neural-adjoint methods embed a pre-trained forward model as a differentiable simulator within gradient-based inverse optimization [35].</p>
+
+<h3 id="43-generative-models">4.3 Generative Models</h3>
+
+<p>Generative adversarial networks (GANs) and variational autoencoders (VAEs) have become foundational tools for metamaterial design space exploration [31&ndash;34]:</p>
+
+<ul>
+<li><strong>GANs</strong> consist of a generator synthesizing candidate designs and a discriminator classifying real vs. fake designs; adversarial training drives the generator toward physically plausible, high-performance configurations. Liu et al. (2018) used GANs to generate over 20,000 novel metasurface designs [182], while a conditional GAN (cGAN) improved transmission loss of acoustic metamaterials by up to <strong>20 dB</strong> [23, 49].</li>
+<li><strong>VAEs</strong> compress metamaterial designs into a continuous latent space, enabling smooth interpolation and property-guided navigation [24, 28].</li>
+<li><strong>Diffusion models</strong>, introduced more recently, progressively denoise random samples to generate high-quality designs and demonstrate superior sample diversity and stability compared to GANs [34, 62]. <em>MetaDiffusion</em> surpasses GAN-based approaches in accuracy and design diversity [34].</li>
+</ul>
+
+<h3 id="44-physics-informed-neural-networks-pinns">4.4 Physics-Informed Neural Networks (PINNs)</h3>
+
+<p>Physics-informed neural networks (PINNs) incorporate governing PDEs (Maxwell's equations, Helmholtz equation, elasticity equations) directly into the loss function [66, 67]. By penalizing physics residuals, PINNs learn solutions consistent with physical laws even in data-sparse regions:</p>
+
+<ul>
+<li>Chen et al. (2020) demonstrated PINNs for inverse problems in nano-optics [22, 67]</li>
+<li>Sarkar et al. (2023) employed a physics-informed tandem architecture for optical metasurface design [17]</li>
+<li>PINNs are particularly valuable when training data is limited [66, 68]</li>
+</ul>
+
+<h3 id="45-reinforcement-learning">4.5 Reinforcement Learning</h3>
+
+<p>Reinforcement learning (RL) formulates metamaterial optimization as a <strong>Markov decision process</strong>: an agent sequentially modifies structural parameters (actions) and receives rewards based on response matching a target. RL does not require pre-generated training datasets, learning instead through environment interaction [51, 52]:</p>
+
+<ul>
+<li>Double deep Q-learning and DDPG applied to acoustic metamaterial scattering minimization [51]</li>
+<li>Phononic crystal band-gap maximization [59]</li>
+<li>Graded metamaterial energy harvesting under realistic excitations [52]</li>
+</ul>
+
+<p>The key challenge for RL is computational cost during training, which scales steeply with design space dimensionality.</p>
+
+<h3 id="46-active-learning-and-bayesian-optimization">4.6 Active Learning and Bayesian Optimization</h3>
+
+<p>Active learning addresses the data bottleneck by intelligently selecting which simulations to run next. Bayesian optimization (BO) maintains a probabilistic surrogate of the objective function and uses an acquisition function (upper confidence bound, expected improvement) to balance exploration and exploitation [73, 74]:</p>
+
+<ul>
+<li>Liu et al. (2025) applied Bayesian active learning to accelerate broadband polarization-insensitive metasurface design [73]</li>
+<li>Cao et al. (2024) demonstrated BO for on-demand inverse design with phononic bandgap characteristics [74]</li>
+</ul>
+
+<h3 id="47-graph-neural-networks">4.7 Graph Neural Networks</h3>
+
+<p>Graph neural networks represent metamaterial architectures as graphs where nodes are structural units and edges encode interactions [41, 42, 57]:</p>
+
+<ul>
+<li>Meyer et al. (2022) demonstrated GNN-based structure-property mapping for graph-based metamaterials [41]</li>
+<li>Xue et al. learned nonlinear dynamics of soft mechanical metamaterials with a metamaterial graph network (MGN) [42, 60]</li>
+<li>Equivariant GNNs incorporating physical symmetries (translation, rotation, scale) improve generalization and data efficiency [71]</li>
+</ul>
+
+<hr>
+
+<h2 id="5-large-language-models-in-metamaterial-design">5. Large Language Models in Metamaterial Design</h2>
+
+<p>The integration of LLMs into metamaterial research represents the newest frontier, enabled by the convergence of powerful pre-trained models and domain-specific fine-tuning strategies.</p>
+
+<h3 id="51-fine-tuned-llms-for-spectral-prediction">5.1 Fine-Tuned LLMs for Spectral Prediction</h3>
+
+<p>Hayes et al. (2024) conducted the <strong>first systematic empirical study</strong> of LLMs (GPT-based) for metamaterial regression tasks [11]. Fine-tuned LLMs (FT-LLMs) achieved lower mean squared error than feedforward neural networks, random forests, k-nearest neighbors, and linear regression on acoustic double metamaterial (ADM) datasets <strong>across all examined dataset sizes</strong>. The LLM's ability to perform zero-shot learning &mdash; making accurate predictions on unseen configurations &mdash; distinguished it from classical ML approaches [11].</p>
+
+<p>However, the authors found that inverse design via direct LLM querying produced unreliable results for large datasets, highlighting a gap between forward prediction capability and structured inverse reasoning.</p>
+
+<h3 id="52-llms-for-porous-metamaterial-generation">5.2 LLMs for Porous Metamaterial Generation</h3>
+
+<p>Fang et al. (2025) fine-tuned the byT5 LLM on graph representations of porous metamaterial units [14]. The LLM learned to predict node connectivity in graphs representing solid and pore phases, enabling both reconstruction of known structures and generation of novel designs. A key finding was the LLM's <strong>zero-shot transferability</strong>: trained on solid-phase graphs, the model accurately predicted pore-phase graphs following the same generative logic [8, 14].</p>
+
+<h3 id="53-multi-agent-llm-frameworks">5.3 Multi-Agent LLM Frameworks</h3>
+
+<p><strong>CrossMatAgent</strong> (Tian et al., 2025) developed a multi-agent generative framework combining LLM reasoning with diffusion model image generation for manufacturable metamaterial pattern design [12]. The framework employs:</p>
+
+<ol>
+<li><strong>Agent Designer</strong> &mdash; LLM-based for language-guided structure proposal</li>
+<li><strong>Agent Generator</strong> &mdash; Stable Diffusion XL (SDXL) for image synthesis</li>
+<li><strong>Agent Supervisor</strong> &mdash; fast property feedback without full simulation</li>
+</ol>
+
+<p>LLM reasoning and reflection mechanisms generate paired text-image data, which fine-tune SDXL for few-shot learning with LoRA adaptors [12].</p>
+
+<h3 id="54-language-guided-design-linguamate">5.4 Language-Guided Design LINGUAMATE</h3>
+
+<p>The <strong>LINGUAMATE</strong> framework addresses the exploratory phase of metamaterial design, where designers have incomplete specifications and vague qualitative goals [13]. Natural language inputs (e.g., <em>"lightweight and energy-absorbing under impact"</em>) are processed by LLMs with strong language understanding and embedded domain knowledge. LLM-based agents propose candidate structures, query simulation tools, and iteratively refine designs. This represents a paradigm shift from numerical specification toward <strong>concept-driven, dialogue-based design workflows</strong> [3, 13].</p>
+
+<h3 id="55-llms-as-physics-educators">5.5 LLMs as Physics Educators</h3>
+
+<p>Lu et al. (2024) investigated LLMs (including ChatGPT) as tools for <strong>learning electromagnetic metamaterial physics</strong> [15]. Pre-trained LLMs already embedded substantial qualitative knowledge about metamaterial behavior. Fine-tuning on domain-specific datasets improved quantitative predictions. The authors proposed LLMs as "domain bridges" enabling non-expert users to explore metamaterial design spaces via natural language queries.</p>
+
+<h3 id="56-foundation-models-and-protein-inspired-analogs">5.6 Foundation Models and Protein-Inspired Analogs</h3>
+
+<p>Developments in foundation models for molecular and materials design provide transferable architectures for metamaterial contexts:</p>
+
+<ul>
+<li>Gruver et al. (2024) fine-tuned LLMs to generate stable inorganic materials as text sequences [112]</li>
+<li>Buehler (2024) demonstrated <strong>MechGPT</strong>, a language-based strategy for mechanics and materials modeling integrating LLM reasoning with physics constraints [113]</li>
+<li>These works establish a template for fine-tuning massive pre-trained models on metamaterial corpora</li>
+</ul>
+
+<hr>
+
+<h2 id="6-electromagnetic-and-microwave-metamaterials">6. Electromagnetic and Microwave Metamaterials</h2>
+
+<p>Electromagnetic metamaterials &mdash; including frequency selective surfaces (FSSs), metamaterial absorbers (MMAs), and reconfigurable intelligent surfaces (RISs) &mdash; have received the greatest volume of ML-aided design attention.</p>
+
+<h3 id="61-absorbers-and-microwave-devices">6.1 Absorbers and Microwave Devices</h3>
+
+<p>Deep neural networks have dramatically accelerated MMA design:</p>
+
+<ul>
+<li>Xie et al. (2023) constructed a tandem DNN achieving dual-band absorption <strong>&gt;85% over 5.1&ndash;14 GHz</strong> with MSE of 8.3&times;10&supmin;&sup4; [16]</li>
+<li>SA-accelerated DNN framework by Fan et al. (2024) achieved <strong>80,000&times; speedup</strong> over full-wave solvers for THz absorbers with 10-minute design cycles [18]</li>
+<li>Physics-informed learning by Deng et al. (2025) extends these results to a systematic physics-aware paradigm [101, 149]</li>
+</ul>
+
+<h3 id="62-metasurface-inverse-design">6.2 Metasurface Inverse Design</h3>
+
+<p>Metasurface inverse design presents the "one-to-many" problem acutely. Probabilistic approaches using mixture density networks [105], conditional VAEs [28, 33], normalizing flows and diffusion models [34], and manifold learning for latent design space discovery [25] address degeneracy by learning the full distribution of valid designs. Gu et al. (2023) employed generative models for FSS inverse design to navigate this degeneracy [118].</p>
+
+<h3 id="63-transformer-based-approaches">6.3 Transformer-Based Approaches</h3>
+
+<p><strong>Metaformer</strong> (Gao et al., 2024) is a transformer-based explainable DL model for metasurface sensor design [26]:</p>
+
+<ul>
+<li>Spectrum-splitting scheme achieves <strong>99% prediction error reduction</strong></li>
+<li>Reduces training parameters by <strong>99%</strong> compared to conventional transformers</li>
+<li>Multi-head attention reveals which spectral regions most strongly couple to structural parameters, providing physical interpretability [26, 27]</li>
+</ul>
+
+<h3 id="64-reconfigurable-and-dynamic-metasurfaces">6.4 Reconfigurable and Dynamic Metasurfaces</h3>
+
+<ul>
+<li>Wen et al. (2023) developed a real-time tandem neural network for adaptive surface design at microwave frequencies [89]</li>
+<li>GAN-based approaches generate diverse reconfigurable configurations across the full response space</li>
+<li>ML paired with phase-change materials (VO&#8322;, GST) enables autonomous reconfiguration [45, 89]</li>
+</ul>
+
+<hr>
+
+<h2 id="7-photonic-metamaterials-and-nanophotonics">7. Photonic Metamaterials and Nanophotonics</h2>
+
+<h3 id="71-nanophotonic-inverse-design">7.1 Nanophotonic Inverse Design</h3>
+
+<p>The field of nanophotonic inverse design has been transformed by DL [9, 126]:</p>
+
+<ul>
+<li>Peurifoy et al. (2018) pioneered ANN-based nanophotonic particle simulation and inverse design [75]</li>
+<li>Bidirectional networks [94], conditional VAEs [28], physics-informed architectures [17, 67], and diffusion models [34] progressively improved accuracy and design coverage</li>
+<li>Wiecha et al. (2021) provided a comprehensive critical review classifying DL inverse design approaches and discussing strengths/weaknesses [9]</li>
+</ul>
+
+<h3 id="72-metalens-design">7.2 Metalens Design</h3>
+
+<p>ML enables efficient design of phase profiles and meta-atom libraries:</p>
+
+<ul>
+<li>Physics-informed DL by Sarkar et al. (2023) achieved consistent design selection by incorporating Maxwell's equations as physical priors [17]</li>
+<li>Neural operator-based surrogate solvers by Augenstein et al. handle arbitrary-geometry inverse design for electromagnetic structures [78]</li>
+</ul>
+
+<h3 id="73-structural-color-and-holography">7.3 Structural Color and Holography</h3>
+
+<ul>
+<li>Dai et al. (2022) used conditional GANs to find multiple solution branches for structural color design [100]</li>
+<li>Deep learning-enabled holography produced complex-amplitude holograms with efficiency orders of magnitude beyond iterative algorithms [115]</li>
+<li>ML-enabled inverse design of radiative cooling films with on-demand transmissive color [77]</li>
+</ul>
+
+<h3 id="74-topological-and-chiral-photonics">7.4 Topological and Chiral Photonics</h3>
+
+<ul>
+<li>Pilozzi et al. used ML to solve the topological photonics inverse problem [99]</li>
+<li>GAN-based data augmentation by Sun et al. (2025) predicted Chern numbers in photonic crystals [160]</li>
+<li>Chiral metamaterials for polarization-sensitive sensing inversely designed using DL by Gao et al. (2020) [81] and Han et al. (2023) [76]</li>
+</ul>
+
+<hr>
+
+<h2 id="8-acoustic-and-elastic-metamaterials">8. Acoustic and Elastic Metamaterials</h2>
+
+<h3 id="81-phononic-crystal-design">8.1 Phononic Crystal Design</h3>
+
+<p>Neural networks accelerate band structure prediction [53, 55], replacing expensive plane-wave expansion or FEM:</p>
+
+<ul>
+<li>CNN-based architectures extract spatial features of PnC unit cells and predict dispersion relations with near-simulation accuracy [54, 55, 56]</li>
+<li>Inverse design using DNNs, MLPs, and RL achieves PnCs with specific bandgap centers and widths [3, 51, 53]</li>
+</ul>
+
+<h3 id="82-acoustic-absorbers-and-noise-control">8.2 Acoustic Absorbers and Noise Control</h3>
+
+<ul>
+<li>On et al. (2023) presented the <strong>first DL-based design of phononic plate metamaterials</strong> for auditory-frequency noise attenuation, achieving 2% error with only 360 training samples [50]</li>
+<li>Rosafalco et al. (2023) demonstrated RL optimization for graded metamaterials maximizing energy harvesting under realistic magnetic and random vibration loads [52]</li>
+<li>Bio-inspired acoustic metamaterials for railway noise control explored with ML-assisted design strategies [49]</li>
+</ul>
+
+<h3 id="83-acoustic-cloaking-and-wave-control">8.3 Acoustic Cloaking and Wave Control</h3>
+
+<ul>
+<li>Zhang et al. (2021) constructed a digital structural genome using CNN to predict elastic wave properties for acoustic corner/carpet cloaks [53]</li>
+<li>ML-driven acoustic invisibility cloaks with multilayered core-shell configurations demonstrated using physics-informed inversion [4, 31]</li>
+<li>Shah et al. used RL agents to discover cylindrical scatterer configurations minimizing acoustic plane wave scattering [51]</li>
+</ul>
+
+<hr>
+
+<h2 id="9-mechanical-metamaterials">9. Mechanical Metamaterials</h2>
+
+<h3 id="91-forward-prediction-and-constitutive-modeling">9.1 Forward Prediction and Constitutive Modeling</h3>
+
+<p>ML surrogate models predict mechanical responses (stress-strain curves, elastic moduli, Poisson's ratio) without repeated FEM [36, 38, 40]:</p>
+
+<ul>
+<li>GNNs provide topology-aware mechanical property prediction [41, 42]</li>
+<li>Bastek et al. (2022) inverted the structure-property map of truss metamaterials using DL, mapping desired mechanical properties back to manufacturable geometries [40]</li>
+</ul>
+
+<h3 id="92-inverse-design-of-auxetic-and-programmable-metamaterials">9.2 Inverse Design of Auxetic and Programmable Metamaterials</h3>
+
+<ul>
+<li>Zheng et al. demonstrated controllable inverse design of auxetic metamaterials using deep learning [82]</li>
+<li>Ha et al. (2023) achieved <strong>rapid inverse design covering the full mechanical property space</strong> via machine learning [37, 163]</li>
+<li>Deep learning generated multi-material auxetic structures validated by 3D printing [38]</li>
+</ul>
+
+<h3 id="93-topology-optimization">9.3 Topology Optimization</h3>
+
+<p>DL-accelerated topology optimization replaces iterative FEM-SIMP cycles:</p>
+
+<ul>
+<li>CNNs predict optimized density distributions from loading conditions [64]</li>
+<li>GANs generate high-resolution topologies from coarse inputs [62, 65]</li>
+<li><strong>ResUNet-GAN</strong> architectures achieve multi-material topology optimization for maximum bulk/shear modulus or negative Poisson's ratio [43, 61]</li>
+<li>TPMS metamaterials (gyroids) optimized using 3D CNN surrogates by Abueidda et al. (2024) [45]</li>
+</ul>
+
+<h3 id="94-multiscale-and-manufacturing-aware-design">9.4 Multiscale and Manufacturing-Aware Design</h3>
+
+<ul>
+<li>Deep generative models incorporating additive manufacturing (AM) manufacturability constraints produce <strong>print-ready 3D metamaterial units</strong> without post-processing [44]</li>
+<li>VAE-based frameworks map 3D geometries to latent spaces conditioned on both mechanical properties and manufacturability metrics [44]</li>
+<li>Multiscale frameworks combining ML-encoded homogenization with Bayesian optimization design programmable metamaterials with heterogeneous microstructures [69, 70]</li>
+</ul>
+
+<hr>
+
+<h2 id="10-thermal-metamaterials">10. Thermal Metamaterials</h2>
+
+<p>Thermal metamaterials control heat flow through engineered microstructures exhibiting thermal cloaking, concentration, rotation, or anomalous conductivity.</p>
+
+<ul>
+<li>Zhu et al. (2024) provided a comprehensive <em>Chemical Reviews</em> survey of ML-aided thermal metamaterial design covering discriminative models, generative models, and optimization algorithms [6]</li>
+<li>ML models predict unprecedented thermal properties previously intractable by analytical approaches</li>
+<li>Bayesian optimization frameworks systematically explore thermal metamaterial parameter spaces, identifying designs with specific anisotropic conductivities [73]</li>
+<li>ML-enhanced radiative cooling film design by Guan et al. (2023) achieved on-demand transmissive color properties [77]</li>
+<li>Deep learning of thermal metamaterials via graph neural networks demonstrated by Shen et al. (2023) [120]</li>
+</ul>
+
+<hr>
+
+<h2 id="11-fabrication-integration-and-multiscale-modeling">11. Fabrication Integration and Multiscale Modeling</h2>
+
+<p>ML-driven metamaterial design increasingly accounts for fabrication constraints [44, 121, 122]:</p>
+
+<ul>
+<li>Wilt et al. developed DL-based surrogate modeling for prediction of errors in compliant auxetic metamaterials produced by AM [194]</li>
+<li>Fang et al. (2025) reviewed <strong>3D and 4D printing of EM metamaterials</strong>, highlighting ML's role in bridging design and fabrication [121]</li>
+<li>Sun et al. (2022) demonstrated ML-evolutionary algorithm-enabled design for 4D-printed active composite structures [122]</li>
+</ul>
+
+<p>Multiscale modeling frameworks combine micro-scale ML surrogates with macro-scale FEA:</p>
+
+<ul>
+<li>Recurrent neural operators (RNOs) enable <strong>history-dependent multiscale modeling</strong> of architected metamaterials, capturing elastic-plastic responses across scales [70]</li>
+<li>Similarity equivariant GNNs for metamaterial homogenization respect physical symmetries, improving generalization to unseen microstructures [71]</li>
+<li>These approaches reduce FE&sup2; concurrent multiscale simulation costs from prohibitive to practical [69]</li>
+</ul>
+
+<hr>
+
+<h2 id="12-challenges-and-future-outlook">12. Challenges and Future Outlook</h2>
+
+<h3 id="121-data-scarcity-and-quality">12.1 Data Scarcity and Quality</h3>
+
+<p>The most persistent challenge is <strong>data scarcity</strong>. High-fidelity simulation data is expensive to generate; each FDTD or FEM simulation may require minutes to hours of computational time. Mitigations include:</p>
+
+<ul>
+<li>Active learning and Bayesian optimization for intelligent sampling [73, 74]</li>
+<li>Transfer learning enabling pre-trained models to fine-tune on small metamaterial-specific datasets [111]</li>
+<li>Physics-informed constraints reducing data requirements by encoding known physical laws [66, 67]</li>
+<li>Open metamaterial datasets analogous to ImageNet remain a gap in the field</li>
+</ul>
+
+<h3 id="122-interpretability-and-physical-consistency">12.2 Interpretability and Physical Consistency</h3>
+
+<p>Deep neural networks are often black-boxes. Solutions:</p>
+
+<ul>
+<li>Transformer-based explainable architectures (Metaformer) reveal which spectral features drive design decisions [26]</li>
+<li>Manifold learning maps high-dimensional design spaces to interpretable low-dimensional representations [25]</li>
+<li>Physics-informed training ensures predictions satisfy Maxwell's equations, elasticity laws, or thermodynamics [17, 66, 67]</li>
+</ul>
+
+<h3 id="123-multiphysics-and-multiobjective-optimization">12.3 Multiphysics and Multiobjective Optimization</h3>
+
+<p>Real-world applications increasingly require simultaneous optimization of multiple physical quantities. Emerging approaches:</p>
+
+<ul>
+<li>Multi-task learning frameworks [206]</li>
+<li>Pareto-front optimization</li>
+<li>Multi-objective Bayesian optimization [73]</li>
+<li>Coupling of LLMs with multi-physics simulators [12, 13]</li>
+</ul>
+
+<h3 id="124-llm-scaling-and-specialization">12.4 LLM Scaling and Specialization</h3>
+
+<p>LLM capabilities in metamaterial design are directly correlated with domain-specific fine-tuning dataset quality and size:</p>
+
+<ul>
+<li>Building large curated datasets of metamaterial structures with annotated properties remains a community challenge</li>
+<li>Foundation models pre-trained on broad materials databases (Materials Project, AFLOW, OQMD) may transfer usefully to metamaterial contexts</li>
+<li><strong>Multi-modal LLMs</strong> jointly processing text, geometric images, and spectral data represent the next generation of design agents [13, 162]</li>
+</ul>
+
+<h3 id="125-experimental-validation-loop">12.5 Experimental Validation Loop</h3>
+
+<p>The majority of reviewed ML works validate designs through simulation only. Key priorities:</p>
+
+<ul>
+<li>Closing the simulation-to-fabrication loop with ML-guided experimental design</li>
+<li>Automated characterization and closed-loop active learning [37, 121]</li>
+<li>Digital twins integrating ML surrogates with real-time experimental feedback [89, 113]</li>
+</ul>
+
+<hr>
+
+<h2 id="13-conclusion">13. Conclusion</h2>
+
+<p>This review surveyed over 210 publications demonstrating that ML and LLMs have fundamentally changed the pace and scope of metamaterial design. Key conclusions:</p>
+
+<ol>
+<li><strong>Deep neural networks</strong> now serve as ultra-fast, highly accurate surrogates for FDTD and FEM simulations across electromagnetic, acoustic, mechanical, and thermal domains.</li>
+<li><strong>Generative models</strong> (GANs, VAEs, diffusion models) expand the design space beyond hand-crafted parameter spaces, enabling discovery of non-intuitive metamaterial geometries with desired properties.</li>
+<li><strong>Physics-informed neural networks</strong> and transformer architectures improve physical consistency and interpretability.</li>
+<li><strong>Reinforcement learning</strong> autonomously navigates complex optimization landscapes without pre-generated training data.</li>
+<li><strong>LLMs</strong> represent an emerging paradigm: fine-tuned models outperform traditional ML on regression tasks, multi-agent LLM frameworks enable language-guided design, and foundation models offer transferable representations.</li>
+<li><strong>Fabrication constraints</strong>, multiscale physics, and multiobjective optimization remain active research frontiers.</li>
+</ol>
+
+<p>The convergence of AI and metamaterial science promises to accelerate the discovery of materials with unprecedented functionalities &mdash; from perfect absorbers to programmable mechanical intelligence &mdash; addressing critical needs in communications, healthcare, defense, and energy.</p>
+
+<hr>
+
+<h2 id="14-references">14. References</h2>
+
+<h3 id="major-review-papers">Major Review Papers</h3>
+
+<ol>
+<li>Cerniauskas G, Sadia H, Alam P. "Machine intelligence in metamaterials design: a review." <em>Oxford Open Materials Science</em>, 4(1), itae001, 2024. <a href="https://academic.oup.com/ooms/article/4/1/itae001/7604561">https://academic.oup.com/ooms/article/4/1/itae001/7604561</a></li>
+<li>Tezsezen E, Yigci D, Ahmadpour A, Tasoglu S. "AI-Based Metamaterial Design." <em>ACS Applied Materials &amp; Interfaces</em>, 16(23), 29547&ndash;29569, 2024. <a href="https://pubs.acs.org/doi/10.1021/acsami.4c04486">https://pubs.acs.org/doi/10.1021/acsami.4c04486</a></li>
+<li>Jin Y, He L, Wen Z, et al. "Intelligent on-demand design of phononic metamaterials." <em>Nanophotonics</em>, 11(3), 439&ndash;460, 2022. <a href="https://doi.org/10.1515/nanoph-2021-0639">https://doi.org/10.1515/nanoph-2021-0639</a></li>
+<li>Muhammad, Kennedy J, Lim CW. "Machine learning and deep learning in phononic crystals and metamaterials &mdash; A review." <em>Materials Today Communications</em>, 2022. <a href="https://doi.org/10.1016/j.mtcomm.2022.104606">https://doi.org/10.1016/j.mtcomm.2022.104606</a></li>
+<li>Lee D, Chen W, Wang L, Chan Y-C, Chen W. "Data-driven design for metamaterials and multiscale systems: A review." <em>Advanced Materials</em>, 36(8), 2305254, 2024. <a href="https://doi.org/10.1002/adma.202305254">https://doi.org/10.1002/adma.202305254</a></li>
+<li>Zhu C, Bamidele EA, Shen X, et al. "Machine Learning Aided Design and Optimization of Thermal Metamaterials." <em>Chemical Reviews</em>, 124(7), 4258&ndash;4331, 2024. <a href="https://pubs.acs.org/doi/10.1021/acs.chemrev.3c00708">https://pubs.acs.org/doi/10.1021/acs.chemrev.3c00708</a></li>
+<li>So S, Badloe T, Noh J, Bravo-Abad J, Rho J. "Deep learning enabled inverse design in nanophotonics." <em>Nanophotonics</em>, 9(5), 1041&ndash;1057, 2020. <a href="https://doi.org/10.1515/nanoph-2019-0474">https://doi.org/10.1515/nanoph-2019-0474</a></li>
+<li>Ma W, Cheng F, Liu Y. "Deep learning for the design of photonic structures." <em>Nature Photonics</em>, 15, 77&ndash;90, 2021. <a href="https://doi.org/10.1038/s41566-020-0685-y">https://doi.org/10.1038/s41566-020-0685-y</a></li>
+<li>Wiecha PR, Arbouet A, Girard C, Muskens OL. "Deep learning in nano-photonics: inverse design and beyond." <em>Photonics Research</em>, 9(5), B182, 2021. <a href="https://opg.optica.org/prj/abstract.cfm?uri=prj-9-5-b182">https://opg.optica.org/prj/abstract.cfm?uri=prj-9-5-b182</a></li>
+<li>Si LM, Niu R, Dang CY, et al. "Advances in artificial intelligence for artificial metamaterials." <em>APL Materials</em>, 12, 120602, 2024. <a href="https://pubs.aip.org/aip/apm/article/12/12/120602/3328550">https://pubs.aip.org/aip/apm/article/12/12/120602/3328550</a></li>
+</ol>
+
+<hr>
+
+<h3 id="llm-specific-papers">LLM-Specific Papers</h3>
+
+<ol start="11">
+<li>Hayes D, Lu D, Malof JM, Padilla WJ. "Can Large Language Models Learn the Physics of Metamaterials? An Empirical Study with ChatGPT." <em>arXiv:2404.15458</em>, 2024. <a href="https://arxiv.org/abs/2404.15458">https://arxiv.org/abs/2404.15458</a></li>
+<li>Tian Y, Zhou C, et al. "CrossMatAgent: AI-Assisted Design of Manufacturable Metamaterial Patterns via Multi-Agent Generative Framework." <em>Advanced Intelligent Discovery</em>, 2025. <a href="https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/aidi.202500063">https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/aidi.202500063</a></li>
+<li>Anonymous Authors. "LINGUAMATE: Language-Guided Metamaterial Design." <em>OpenReview</em>, 2025. <a href="https://openreview.net/pdf/c6a5b842bba69f81549f23a5862880871877eb4a.pdf">https://openreview.net/pdf/c6a5b842bba69f81549f23a5862880871877eb4a.pdf</a></li>
+<li>Fang Z, et al. "Reconstruction and Generation of Porous Metamaterial Units via VAE and LLM." <em>J. Comput. Inf. Sci. Eng.</em>, 25(2), 021003, 2025. <a href="https://asmedigitalcollection.asme.org/computingengineering/article/25/2/021003/1201904">https://asmedigitalcollection.asme.org/computingengineering/article/25/2/021003/1201904</a></li>
+<li>Lu D, Fan K, Jin B, Malof J, Padilla WJ. "Learning Electromagnetic Metamaterial Physics With ChatGPT." <em>ACS Nano</em>, 2024. <a href="https://pubs.acs.org/doi/10.1021/acsnano.4c01828">https://pubs.acs.org/doi/10.1021/acsnano.4c01828</a></li>
+<li>Lu W, Luu RK, Buehler MJ. "Fine-Tuning Large Language Models for Domain Adaptation." <em>npj Computational Materials</em>, 11, 84, 2024. <a href="https://www.nature.com/articles/s41524-025-01564-y">https://www.nature.com/articles/s41524-025-01564-y</a></li>
+<li>Gruver N, et al. "Fine-tuned language models generate stable inorganic materials as text." <em>ICLR 2024</em>. <a href="https://openreview.net/forum?id=iSAgvYhHMT">https://openreview.net/forum?id=iSAgvYhHMT</a></li>
+<li>Buehler MJ. "MechGPT, a Language-Based Strategy for Mechanics and Materials Modeling." <em>Journal of Applied Mechanics</em>, 2024. <a href="https://doi.org/10.1115/1.4063843">https://doi.org/10.1115/1.4063843</a></li>
+<li>Lu D, Malof JM, Padilla WJ. "An Agentic Framework for Autonomous Metamaterial Modeling and Inverse Design." <em>ACS Photonics</em>, 2025. <a href="https://doi.org/10.1021/acsphotonics.5c01514">https://doi.org/10.1021/acsphotonics.5c01514</a></li>
+<li>Qi J, et al. "MetaScientist: A Human-AI Synergistic Framework for Automated Mechanical Metamaterial Design." <em>arXiv:2412.16270</em>, 2024. <a href="https://arxiv.org/abs/2412.16270">https://arxiv.org/abs/2412.16270</a></li>
+</ol>
+
+<hr>
+
+<h3 id="deep-learning--electromagnetic--photonic-design">Deep Learning &mdash; Electromagnetic &amp; Photonic Design</h3>
+
+<ol start="16">
+<li>Xie C, Li H, Cui C, et al. "Deep learning assisted inverse design of metamaterial microwave absorber." <em>Applied Physics Letters</em>, 123(18), 181701, 2023. <a href="https://pubs.aip.org/aip/apl/article/123/18/181701/2919094">https://pubs.aip.org/aip/apl/article/123/18/181701/2919094</a></li>
+<li>Sarkar S, Ji A, Jermain Z, et al. "Physics-Informed Machine Learning for Inverse Design of Optical Metamaterials." <em>Advanced Photonics Research</em>, 4(12), 2023. <a href="https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/adpr.202300158">https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/adpr.202300158</a></li>
+<li>Fan Z, et al. "Deep learning-based inverse design of multi-functional metasurface absorbers." <em>Optics Letters</em>, 49(10), 2733, 2024. <a href="https://opg.optica.org/ol/abstract.cfm?uri=ol-49-10-2733">https://opg.optica.org/ol/abstract.cfm?uri=ol-49-10-2733</a></li>
+<li>Liu Y, et al. "Reliable, efficient, and scalable photonic inverse design via physics-inspired deep learning." <em>Nature Computational Science</em>, 2024. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12338875/">https://pmc.ncbi.nlm.nih.gov/articles/PMC12338875/</a></li>
+<li>Li Z, Pestourie R, Lin Z, et al. "Empowering Metasurfaces with Inverse Design: Principles and Applications." <em>ACS Photonics</em>, 9(7), 2178&ndash;2192, 2022. <a href="https://doi.org/10.1021/acsphotonics.1c01850">https://doi.org/10.1021/acsphotonics.1c01850</a></li>
+<li>Khatib O, Ren S, Malof J, Padilla WJ. "Learning the physics of all-dielectric metamaterials with deep Lorentz neural networks." <em>Advanced Optical Materials</em>, 10, 2200097, 2022. <a href="https://doi.org/10.1002/adom.202200097">https://doi.org/10.1002/adom.202200097</a></li>
+<li>Chen Y, Lu L, Karniadakis GE, Negro LD. "Physics-informed neural networks for inverse problems in nano-optics and metamaterials." <em>Optics Express</em>, 28(8), 11618, 2020. <a href="https://doi.org/10.1364/OE.384875">https://doi.org/10.1364/OE.384875</a></li>
+<li>Ji W, et al. "Recent advances in metasurface design with ML, PINNs, and topology optimization." <em>Light: Science &amp; Applications</em>, 12(1), 169, 2023. <a href="https://doi.org/10.1038/s41377-023-01218-y">https://doi.org/10.1038/s41377-023-01218-y</a></li>
+<li>Ma W, Cheng F, Xu Y, Wen Q, Liu Y. "Probabilistic representation and inverse design of metamaterials via deep generative model." <em>Advanced Materials</em>, 2019. <a href="https://doi.org/10.1002/adma.201901111">https://doi.org/10.1002/adma.201901111</a></li>
+<li>Zandehshahvar M, et al. "Manifold Learning for Knowledge Discovery and Intelligent Inverse Design of Photonic Nanostructures." <em>ACS Photonics</em>, 9(2), 714&ndash;721, 2022. <a href="https://doi.org/10.1021/acsphotonics.1c01888">https://doi.org/10.1021/acsphotonics.1c01888</a></li>
+<li>Gao F, et al. "Meta-Attention Deep Learning for Smart Development of Metasurface Sensors (Metaformer)." <em>Advanced Science</em>, 11(42), 2405750, 2024. <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202405750">https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202405750</a></li>
+<li>Yu H, et al. "AI-driven approaches in electromagnetic metamaterials design and application: a review." <em>EPJ Applied Metamaterials</em>, 2025. <a href="https://epjam.edp-open.org/articles/epjam/full_html/2025/01/epjam250030/epjam250030.html">https://epjam.edp-open.org/articles/epjam/full_html/2025/01/epjam250030/epjam250030.html</a></li>
+<li>Islam MZ, et al. "Manufacturability-aware deep generative design of 3D metamaterial units for AM." <em>Structural and Multidisciplinary Optimization</em>, 2024. <a href="https://link.springer.com/article/10.1007/s00158-023-03732-4">https://link.springer.com/article/10.1007/s00158-023-03732-4</a></li>
+<li>Dong Y, An S, Jiang H, et al. "Advanced deep learning approaches in metasurface modeling and design: A review." <em>Progress in Quantum Electronics</em>, 99, 100554, 2025. <a href="https://doi.org/10.1016/j.pquantelec.2025.100554">https://doi.org/10.1016/j.pquantelec.2025.100554</a></li>
+<li>Wang Q, Zhang Y, et al. "The transformational dive of nanophotonics inverse design from deep learning to AGI." <em>APL Photonics</em>, 9(10), 2024. <a href="https://doi.org/10.1063/5.0226592">https://doi.org/10.1063/5.0226592</a></li>
+<li>Gahlmann T, et al. "Free-Form Diffractive Metagrating Design Based on Generative Adversarial Networks." <em>ACS Nano</em>, 2021. <a href="https://pubs.acs.org/doi/10.1021/acsnano.9b02371">https://pubs.acs.org/doi/10.1021/acsnano.9b02371</a></li>
+<li>Liu Z, Zhu D, Rodrigues SP, et al. "Generative model for the inverse design of metasurfaces." <em>Nano Letters</em>, 18(10), 6570&ndash;6576, 2018. <a href="https://doi.org/10.1021/acs.nanolett.8b03171">https://doi.org/10.1021/acs.nanolett.8b03171</a></li>
+<li>Wang J, Yao B, et al. "Generative adversarial networks for high degree of freedom metasurface designs." <em>Advanced Composites and Hybrid Materials</em>, 2024. <a href="https://link.springer.com/article/10.1007/s42114-024-01190-0">https://link.springer.com/article/10.1007/s42114-024-01190-0</a></li>
+<li>Zhang Z, Yang C, Qin Y, Feng H, Feng J, Li H. "Diffusion probabilistic model based accurate and high-degree-of-freedom metasurface inverse design." <em>Nanophotonics</em>, 12(20), 3871&ndash;3881, 2023. <a href="https://doi.org/10.1515/nanoph-2023-0292">https://doi.org/10.1515/nanoph-2023-0292</a></li>
+<li>Deng B, Zareei A, Ding X, Weaver JC, Rycroft CH, Bertoldi K. "Inverse design of mechanical metamaterials with target nonlinear response via a neural accelerated evolution strategy." <em>Advanced Materials</em>, 34(41), 2206238, 2022. <a href="https://doi.org/10.1002/adma.202206238">https://doi.org/10.1002/adma.202206238</a></li>
+</ol>
+
+<hr>
+
+<h3 id="mechanical-metamaterials">Mechanical Metamaterials</h3>
+
+<ol start="36">
+<li>Zheng X, Zhang X, Chen TT, Watanabe I. "Deep learning in mechanical metamaterials: From prediction and generation to inverse design." <em>Advanced Materials</em>, 35(45), e2302530, 2023. <a href="https://doi.org/10.1002/adma.202302530">https://doi.org/10.1002/adma.202302530</a></li>
+<li>Ha CS, Yao D, Xu Z, et al. "Rapid inverse design of metamaterials based on prescribed mechanical behavior through ML." <em>Nature Communications</em>, 14, 5765, 2023. <a href="https://doi.org/10.1038/s41467-023-40854-1">https://doi.org/10.1038/s41467-023-40854-1</a></li>
+<li>Pahlavani H, et al. "Deep learning for the rare-event rational design of 3D printed multi-material mechanical metamaterials." <em>Communications Materials</em>, 3, 46, 2022. <a href="https://doi.org/10.1038/s43246-022-00270-2">https://doi.org/10.1038/s43246-022-00270-2</a></li>
+<li>Zheng X, Chen TT, Guo X, et al. "Controllable inverse design of auxetic metamaterials using deep learning." <em>Materials &amp; Design</em>, 2021. <a href="https://doi.org/10.1016/j.matdes.2021.110178">https://doi.org/10.1016/j.matdes.2021.110178</a></li>
+<li>Bastek J-H, Bhattacharya K, Reiter P, et al. "Inverting the structure-property map of truss metamaterials by deep learning." <em>PNAS</em>, 119(1), 2022. <a href="https://doi.org/10.1073/pnas.2111505119">https://doi.org/10.1073/pnas.2111505119</a></li>
+<li>Meyer P, Bonatti C, Tancogne-Dejean T, Mohr D. "Graph-based metamaterials: Deep learning of structure-property relations." <em>Materials &amp; Design</em>, 223, 111175, 2022. <a href="https://doi.org/10.1016/j.matdes.2022.111175">https://doi.org/10.1016/j.matdes.2022.111175</a></li>
+<li>Xue T, Liao S, Gan Z, et al. "Learning the nonlinear dynamics of soft mechanical metamaterials with graph networks." <em>Computer Methods in Applied Mechanics and Engineering</em>, 2023. <a href="https://arxiv.org/abs/2202.13775">https://arxiv.org/abs/2202.13775</a></li>
+<li>Li J, Ye H, Wei N, et al. "Efficient multi-material topology optimization via ResUNet-GAN." <em>Acta Mechanica Sinica</em>, 40, 423185, 2024. <a href="https://link.springer.com/article/10.1007/s10409-023-23185-x">https://link.springer.com/article/10.1007/s10409-023-23185-x</a></li>
+<li>Islam MZ, et al. "Manufacturability-aware deep generative design of 3D metamaterial units for additive manufacturing." <em>Structural and Multidisciplinary Optimization</em>, 2024. <a href="https://link.springer.com/article/10.1007/s00158-023-03732-4">https://link.springer.com/article/10.1007/s00158-023-03732-4</a></li>
+<li>Abueidda DW, Khan KA, et al. "Designing a TPMS metamaterial via deep learning and topology optimization." <em>Frontiers in Mechanical Engineering</em>, 10, 1417606, 2024. <a href="https://www.frontiersin.org/journals/mechanical-engineering/articles/10.3389/fmech.2024.1417606/full">https://www.frontiersin.org/journals/mechanical-engineering/articles/10.3389/fmech.2024.1417606/full</a></li>
+<li>Garland AP, White BC, Jensen SC, Boyce BL. "Pragmatic generative optimization of novel structural lattice metamaterials with ML." <em>Materials &amp; Design</em>, 203, 109632, 2021. <a href="https://doi.org/10.1016/j.matdes.2021.109632">https://doi.org/10.1016/j.matdes.2021.109632</a></li>
+<li>Bessa MA, Bostanabad R, Liu Z, et al. "A framework for data-driven analysis of materials under uncertainty." <em>Computer Methods in Applied Mechanics and Engineering</em>, 2017. <a href="https://doi.org/10.1016/j.cma.2017.03.037">https://doi.org/10.1016/j.cma.2017.03.037</a></li>
+<li>Wu L, Liu L, Wang Y, et al. "A machine learning-based method to design modular metamaterials." <em>Extreme Mechanics Letters</em>, 36, 100657, 2020. <a href="https://doi.org/10.1016/j.eml.2020.100657">https://doi.org/10.1016/j.eml.2020.100657</a></li>
+<li>Ha CS, Yao D, et al. "Rapid inverse design of metamaterials via ML." <em>Nature Communications</em>, 2023. <a href="https://doi.org/10.1038/s41467-023-40854-1">https://doi.org/10.1038/s41467-023-40854-1</a></li>
+</ol>
+
+<hr>
+
+<h3 id="acoustic--phononic-metamaterials">Acoustic / Phononic Metamaterials</h3>
+
+<ol start="49">
+<li>Lu J-H, et al. "Bio-inspired acoustic metamaterials for traffic noise control with machine learning." <em>Communications Engineering</em>, 2025. <a href="https://www.nature.com/articles/s44172-025-00470-x">https://www.nature.com/articles/s44172-025-00470-x</a></li>
+<li>On S, et al. "Deep-Learning-Based Acoustic Metamaterial Design for Attenuating Structure-Borne Noise." <em>Materials</em>, 16(5), 1879, 2023. <a href="https://www.mdpi.com/1996-1944/16/5/1879">https://www.mdpi.com/1996-1944/16/5/1879</a></li>
+<li>Shah T, Zhuo L, Lai P, et al. "Reinforcement learning applied to metamaterial design." <em>Journal of the Acoustical Society of America</em>, 150(1), 321&ndash;338, 2021. <a href="https://doi.org/10.1121/10.0005545">https://doi.org/10.1121/10.0005545</a></li>
+<li>Rosafalco L, De Ponti JM, Iorio L, et al. "Reinforcement learning optimisation for graded metamaterial design." <em>Scientific Reports</em>, 13, 21836, 2023. <a href="https://www.nature.com/articles/s41598-023-48927-3">https://www.nature.com/articles/s41598-023-48927-3</a></li>
+<li>Zhang J, Li Y, Zhao T, et al. "Machine-learning based design of digital materials for elastic wave control." <em>Extreme Mechanics Letters</em>, 48, 101372, 2021. <a href="https://doi.org/10.1016/j.eml.2021.101372">https://doi.org/10.1016/j.eml.2021.101372</a></li>
+<li>Jiang W, Zhu Y, Yin G, et al. "Dispersion relation prediction and structure inverse design of elastic metamaterials via deep learning." <em>Materials Today Physics</em>, 22, 100616, 2022. <a href="https://doi.org/10.1016/j.mtphys.2022.100616">https://doi.org/10.1016/j.mtphys.2022.100616</a></li>
+<li>Han S, Han Q, Li C. "Deep-learning-based inverse design of phononic crystals for anticipated wave attenuation." <em>Journal of Applied Physics</em>, 132, 154901, 2022. <a href="https://doi.org/10.1063/5.0111610">https://doi.org/10.1063/5.0111610</a></li>
+<li>Miao X, Dong HW, Wang Y. "Deep learning of dispersion engineering in two-dimensional phononic crystals." <em>Engineering Optimization</em>, 55, 125&ndash;139, 2023. <a href="https://doi.org/10.1080/0305215X.2022.2060280">https://doi.org/10.1080/0305215X.2022.2060280</a></li>
+<li>Meyer P, et al. "Graph Based Metamaterials: Deep Learning of Structure-Property Relations." <em>Materials &amp; Design</em>, 2022. <a href="https://doi.org/10.1016/j.matdes.2022.111175">https://doi.org/10.1016/j.matdes.2022.111175</a></li>
+<li>Donda K, Singh R, Kumar R, et al. "Ultrathin acoustic absorbing metasurface based on deep learning approach." <em>Smart Materials and Structures</em>, 30(8), 085003, 2021. <a href="https://doi.org/10.1088/1361-665X/ac0b80">https://doi.org/10.1088/1361-665X/ac0b80</a></li>
+<li>Che C, et al. "Deep reinforcement learning empowers automated inverse design and optimization of photonic crystals." <em>Nanophotonics</em>, 12(2), 319&ndash;334, 2023. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11501320/">https://pmc.ncbi.nlm.nih.gov/articles/PMC11501320/</a></li>
+<li>Xue T, et al. "Learning the nonlinear dynamics of soft mechanical metamaterials with graph networks." <em>arXiv:2202.13775</em>, 2022. <a href="https://arxiv.org/abs/2202.13775">https://arxiv.org/abs/2202.13775</a></li>
+</ol>
+
+<hr>
+
+<h3 id="topology-optimization">Topology Optimization</h3>
+
+<ol start="61">
+<li>Li J, Ye H, Wei N, et al. "ResUNet-GAN for topology optimization of 2D microstructures." <em>Mathematics and Mechanics of Solids</em>, 2024. <a href="https://journals.sagepub.com/doi/10.1177/10812865241233013">https://journals.sagepub.com/doi/10.1177/10812865241233013</a></li>
+<li>Wang Z, et al. "Structural topology optimization based on diffusion generative adversarial networks." <em>Engineering Applications of Artificial Intelligence</em>, 2024. <a href="https://www.sciencedirect.com/science/article/abs/pii/S0952197624016026">https://www.sciencedirect.com/science/article/abs/pii/S0952197624016026</a></li>
+<li>Kollmann HT, Abueidda DW, Koric S. "Deep learning for topology optimization of 2D metamaterials." <em>Materials &amp; Design</em>, 196, 109098, 2020. <a href="https://doi.org/10.1016/j.matdes.2020.109098">https://doi.org/10.1016/j.matdes.2020.109098</a></li>
+<li>Huang X, Chen Y, Miao C, et al. "Generative adversarial network for stress-minimizing topology optimization." <em>International Journal of Mechanics and Materials in Design</em>, 2025. <a href="https://link.springer.com/article/10.1007/s10999-025-09811-2">https://link.springer.com/article/10.1007/s10999-025-09811-2</a></li>
+</ol>
+
+<hr>
+
+<h3 id="physics-informed-neural-networks">Physics-Informed Neural Networks</h3>
+
+<ol start="66">
+<li>Karniadakis GE, Kevrekidis IG, Lu L, et al. "Physics-informed machine learning." <em>Nature Reviews Physics</em>, 3, 422, 2021. <a href="https://doi.org/10.1038/s42254-021-00314-5">https://doi.org/10.1038/s42254-021-00314-5</a></li>
+<li>Chen Y, Lu L, Karniadakis GE, Negro LD. "Physics-informed neural networks for inverse problems in nano-optics and metamaterials." <em>Optics Express</em>, 28(8), 11618, 2020. <a href="https://doi.org/10.1364/OE.384875">https://doi.org/10.1364/OE.384875</a></li>
+<li>Khaireh-Walieh A, et al. "A Newcomer's Guide to Deep Learning for Inverse Design in Nano-Photonics." <em>arXiv:2307.08618</em>, 2023. <a href="https://arxiv.org/abs/2307.08618">https://arxiv.org/abs/2307.08618</a></li>
+</ol>
+
+<hr>
+
+<h3 id="multiscale-modeling">Multiscale Modeling</h3>
+
+<ol start="69">
+<li>Zhu Y, et al. "ML-encoded multiscale modelling and Bayesian optimization for programmable metamaterials." <em>Acta Mechanica Sinica</em>, 2024. <a href="https://link.springer.com/article/10.1007/s10409-024-24061-x">https://link.springer.com/article/10.1007/s10409-024-24061-x</a></li>
+<li>Bhattacharya K, et al. "Iterated learning and multiscale modeling of history-dependent architected metamaterials." <em>arXiv</em>, 2024. <a href="https://arxiv.org/abs/2402.12674">https://arxiv.org/abs/2402.12674</a></li>
+<li>Rosafalco L, et al. "Similarity equivariant graph neural networks for homogenization of metamaterials." <em>arXiv:2404.17365</em>, 2024. <a href="https://arxiv.org/abs/2404.17365">https://arxiv.org/abs/2404.17365</a></li>
+<li>Black N, Najafi AR. "Deep neural networks for parameterized homogenization in concurrent multiscale structural optimization." <em>Structural and Multidisciplinary Optimization</em>, 66, 2023. <a href="https://doi.org/10.1007/s00158-023-03571-3">https://doi.org/10.1007/s00158-023-03571-3</a></li>
+</ol>
+
+<hr>
+
+<h3 id="active-learning--bayesian-optimization">Active Learning &amp; Bayesian Optimization</h3>
+
+<ol start="73">
+<li>Liu J, et al. "Bayesian active learning for accelerated design of broadband polarization-insensitive metasurfaces." <em>Intelligent Computing</em>, 4, 0135, 2025. <a href="https://doi.org/10.34133/icomputing.0135">https://doi.org/10.34133/icomputing.0135</a></li>
+<li>Cao B, et al. "On-Demand Inverse Design of Metamaterials Using Deep Neural Networks with Bayesian Optimization." <em>Intelligent Computing</em>, 2024. <a href="https://spj.science.org/doi/10.34133/icomputing.0139">https://spj.science.org/doi/10.34133/icomputing.0139</a></li>
+</ol>
+
+<hr>
+
+<h3 id="plasmonics--nanophotonics">Plasmonics / Nanophotonics</h3>
+
+<ol start="75">
+<li>Peurifoy J, et al. "Nanophotonic particle simulation and inverse design using artificial neural networks." <em>Science Advances</em>, 4(6), eaar4206, 2018. <a href="https://doi.org/10.1126/sciadv.aar4206">https://doi.org/10.1126/sciadv.aar4206</a></li>
+<li>Han JH, et al. "Neural-Network-Enabled Design of a Chiral Plasmonic Nanodimer for Chirality Sensing." <em>ACS Nano</em>, 17(3), 2306&ndash;2317, 2023. <a href="https://doi.org/10.1021/acsnano.2c08867">https://doi.org/10.1021/acsnano.2c08867</a></li>
+<li>Guan Q, Raza A, Mao SS, et al. "Machine Learning-Enabled Inverse Design of Radiative Cooling Film." <em>ACS Photonics</em>, 10(3), 715&ndash;726, 2023. <a href="https://doi.org/10.1021/acsphotonics.2c01857">https://doi.org/10.1021/acsphotonics.2c01857</a></li>
+<li>Augenstein Y, Repan T, Rockstuhl C. "Neural Operator-Based Surrogate Solver for Free-Form Electromagnetic Inverse Design." <em>ACS Photonics</em>, 2023. <a href="https://doi.org/10.1021/acsphotonics.3c00606">https://doi.org/10.1021/acsphotonics.3c00606</a></li>
+<li>Liang B, et al. "Physics-Guided Neural-Network-Based Inverse Design of a Photonic-Plasmonic Nanodevice." <em>ACS Applied Materials &amp; Interfaces</em>, 14(23), 27397, 2022. <a href="https://doi.org/10.1021/acsami.2c05083">https://doi.org/10.1021/acsami.2c05083</a></li>
+<li>Lininger A, Hinczewski M, Strangi G. "General Inverse Design of Layered Thin-Film Materials with CNNs." <em>ACS Photonics</em>, 8(12), 3641&ndash;3650, 2021. <a href="https://doi.org/10.1021/acsphotonics.1c01498">https://doi.org/10.1021/acsphotonics.1c01498</a></li>
+<li>Gao L, Li X, Liu D, et al. "Deep-Learning-Enabled On-Demand Design of Chiral Metamaterials." <em>ACS Nano</em>, 2020. <a href="https://pubs.acs.org/doi/10.1021/acsnano.8b03569">https://pubs.acs.org/doi/10.1021/acsnano.8b03569</a></li>
+<li>Zheng X, Chen TT, Guo X, et al. "Controllable inverse design of auxetic metamaterials using deep learning." <em>Materials &amp; Design</em>, 2021. <a href="https://doi.org/10.1016/j.matdes.2021.110178">https://doi.org/10.1016/j.matdes.2021.110178</a></li>
+</ol>
+
+<hr>
+
+<h3 id="surrogate-models--neural-architectures">Surrogate Models &amp; Neural Architectures</h3>
+
+<ol start="83">
+<li>Feng F, Huo D, Zang Z, et al. "Symbiotic evolution of photonics and artificial intelligence: a comprehensive review." <em>Advanced Photonics</em>, 7(2), 024001, 2025. <a href="https://doi.org/10.1117/1.AP.7.2.024001">https://doi.org/10.1117/1.AP.7.2.024001</a></li>
+<li>Rade J, et al. "Algorithmically-consistent deep learning frameworks for structural topology optimization." <em>Engineering Applications of Artificial Intelligence</em>, 106, 104483, 2021. <a href="https://doi.org/10.1016/j.engappai.2021.104483">https://doi.org/10.1016/j.engappai.2021.104483</a></li>
+<li>Bonfanti S, Guerra R, Font-Clos F, et al. "Automatic design of mechanical metamaterial actuators." <em>Nature Communications</em>, 11, 4162, 2020. <a href="https://doi.org/10.1038/s41467-020-17947-2">https://doi.org/10.1038/s41467-020-17947-2</a></li>
+<li>Wen E, Yang X, Sievenpiper DF. "Real-data-driven real-time reconfigurable microwave reflective surface." <em>Nature Communications</em>, 14, 7736, 2023. <a href="https://doi.org/10.1038/s41467-023-43473-y">https://doi.org/10.1038/s41467-023-43473-y</a></li>
+<li>Xu YD, et al. "Recent Advances in Reconfigurable Metasurfaces." <em>Nanomaterials</em>, 2023. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9921398/">https://pmc.ncbi.nlm.nih.gov/articles/PMC9921398/</a></li>
+<li>Gao L, et al. "A bidirectional deep neural network for accurate silicon color design." <em>Advanced Materials</em>, 31(51), 1905467, 2019. <a href="https://doi.org/10.1002/adma.201905467">https://doi.org/10.1002/adma.201905467</a></li>
+<li>Liu D, Tan Y, Khoram E, Yu Z. "Training deep neural networks for the inverse design of nanophotonic structures." <em>ACS Photonics</em>, 5(4), 1365&ndash;1369, 2018. <a href="https://doi.org/10.1021/acsphotonics.7b01377">https://doi.org/10.1021/acsphotonics.7b01377</a></li>
+</ol>
+
+<hr>
+
+<h3 id="thermal-metamaterials">Thermal Metamaterials</h3>
+
+<ol start="86">
+<li>Wang Y, Sha W, Xiao M, Gao L. "Thermal Metamaterials with Configurable Mechanical Properties." <em>Physical Review Applied</em>, 2024. <a href="https://doi.org/10.1103/PhysRevApplied.21.044060">https://doi.org/10.1103/PhysRevApplied.21.044060</a></li>
+<li>Kim S, Wu S, Jian R, et al. "Machine learning for predicting thermal metamaterial properties." <em>ACS Nano</em>, 2022. <a href="https://doi.org/10.1021/acsnano.2c05072">https://doi.org/10.1021/acsnano.2c05072</a></li>
+<li>Zhu C, Bamidele EA, Shen X, Zhu G, Li B. "Machine Learning Aided Design and Optimization of Thermal Metamaterials." <em>Chemical Reviews</em>, 124(7), 4258&ndash;4331, 2024. <a href="https://doi.org/10.1021/acs.chemrev.3c00708">https://doi.org/10.1021/acs.chemrev.3c00708</a></li>
+</ol>
+
+<hr>
+
+<h3 id="structural-color-holography-topological">Structural Color, Holography, Topological</h3>
+
+<ol start="99">
+<li>Pilozzi L, et al. "Machine learning inverse problem for topological photonics." <em>Communications Physics</em>, 2018. <a href="https://doi.org/10.1038/s42005-018-0058-8">https://doi.org/10.1038/s42005-018-0058-8</a></li>
+<li>Dai P, et al. "Inverse design of structural color: finding multiple solutions via conditional GANs." <em>Nanophotonics</em>, 11(13), 3057&ndash;3069, 2022. <a href="https://doi.org/10.1515/nanoph-2022-0095">https://doi.org/10.1515/nanoph-2022-0095</a></li>
+<li>Deng Y, Fan K, Jin B, Malof J, Padilla WJ. "Physics-informed learning in artificial electromagnetic materials." <em>Applied Physics Reviews</em>, 12(1), 2025. <a href="https://doi.org/10.1063/5.0232675">https://doi.org/10.1063/5.0232675</a></li>
+<li>Torfeh M, Hsu CW. "Probabilistic inverse design of metasurfaces using mixture density neural networks." <em>Journal of Physics: Photonics</em>, 7(1), 015007, 2025. <a href="https://doi.org/10.1088/2515-7647/ad9b82">https://doi.org/10.1088/2515-7647/ad9b82</a></li>
+<li>Ren H, et al. "Complex-amplitude metasurface holography with computational inverse design." <em>Science Advances</em>, 6(8), 2020. <a href="https://doi.org/10.1126/sciadv.aax1839">https://doi.org/10.1126/sciadv.aax1839</a></li>
+<li>Gu Z, et al. "A solution to the dilemma for FSS inverse design using generative models." <em>IEEE Trans Antenna Propag</em>, 71(6), 5100&ndash;5109, 2023. <a href="https://doi.org/10.1109/TAP.2023.3266053">https://doi.org/10.1109/TAP.2023.3266053</a></li>
+<li>Sun A, et al. "Predicting Chern numbers in photonic crystals using GAN-based data augmentation." <em>Optics Express</em>, 33(2), 3005, 2025. <a href="https://doi.org/10.1364/OE.544553">https://doi.org/10.1364/OE.544553</a></li>
+</ol>
+
+<hr>
+
+<h3 id="fabrication--4d-printing">Fabrication &amp; 4D Printing</h3>
+
+<ol start="121">
+<li>Fang R, Zhang X, Song B, et al. "3D and 4D printing of electromagnetic metamaterials." <em>Engineering</em>, 51, 171, 2025. <a href="https://doi.org/10.1016/j.eng.2024.06.020">https://doi.org/10.1016/j.eng.2024.06.020</a></li>
+<li>Jiang F, et al. "ML-evolutionary algorithm enabled design for 4D-printed active composite structures." <em>Advanced Functional Materials</em>, 32, 2022. <a href="https://doi.org/10.1002/adfm.202109805">https://doi.org/10.1002/adfm.202109805</a></li>
+<li>Wilt JK, et al. "Accelerating auxetic metamaterial design with deep learning." <em>Advanced Engineering Materials</em>, 2020. <a href="https://doi.org/10.1002/adem.202070018">https://doi.org/10.1002/adem.202070018</a></li>
+<li>Chan Y-C, Ahmed F, Wang L, Chen W. "METASET: Exploring Shape and Property Spaces for Data-Driven Metamaterials Design." <em>Journal of Mechanical Design</em>, 143(3), 031707, 2021. <a href="https://doi.org/10.1115/1.4048629">https://doi.org/10.1115/1.4048629</a></li>
+<li>Kumar S, et al. "Inverse-designed spinodoid metamaterials." <em>npj Computational Materials</em>, 6, 73, 2020. <a href="https://doi.org/10.1038/s41524-020-0341-6">https://doi.org/10.1038/s41524-020-0341-6</a></li>
+</ol>
+
+<hr>
+
+<h3 id="foundations-and-seminal-works">Foundations and Seminal Works</h3>
+
+<ol start="126">
+<li>Molesky S, et al. "Inverse design in nanophotonics." <em>Nature Photonics</em>, 12, 659&ndash;670, 2018. <a href="https://doi.org/10.1038/s41566-018-0246-9">https://doi.org/10.1038/s41566-018-0246-9</a></li>
+<li>Yu N, Capasso F. "Flat optics with designer metasurfaces." <em>Nature Materials</em>, 13, 139&ndash;150, 2014. <a href="https://doi.org/10.1038/nmat3839">https://doi.org/10.1038/nmat3839</a></li>
+<li>Pendry JB. "Negative refraction makes a perfect lens." <em>Physical Review Letters</em>, 85, 3966, 2000. <a href="https://doi.org/10.1103/PhysRevLett.85.3966">https://doi.org/10.1103/PhysRevLett.85.3966</a></li>
+<li>Smith DR, Pendry JB, Wiltshire MCK. "Metamaterials and negative refractive index." <em>Science</em>, 305, 788&ndash;792, 2004. <a href="https://doi.org/10.1126/science.1096796">https://doi.org/10.1126/science.1096796</a></li>
+<li>Cummer SA, Christensen J, Al&ugrave; A. "Controlling sound with acoustic metamaterials." <em>Nature Reviews Materials</em>, 1, 16001, 2016. <a href="https://doi.org/10.1038/natrevmats.2016.1">https://doi.org/10.1038/natrevmats.2016.1</a></li>
+<li>Ma G, Sheng P. "Acoustic metamaterials: From local resonances to broad horizons." <em>Science Advances</em>, 2, e1501595, 2016. <a href="https://doi.org/10.1126/sciadv.1501595">https://doi.org/10.1126/sciadv.1501595</a></li>
+<li>Bertoldi K, Vitelli V, Christensen J, et al. "Flexible mechanical metamaterials." <em>Nature Reviews Materials</em>, 2, 17066, 2017. <a href="https://doi.org/10.1038/natrevmats.2017.66">https://doi.org/10.1038/natrevmats.2017.66</a></li>
+<li>Kushwaha MS, et al. "Acoustic band structure of periodic elastic composites." <em>Physical Review Letters</em>, 71, 2022, 1993. <a href="https://doi.org/10.1103/PhysRevLett.71.2022">https://doi.org/10.1103/PhysRevLett.71.2022</a></li>
+<li>Jiang J, Fan JA. "Tandem neural networks for inverse design of metasurfaces." <em>ACS Nano</em>, 2019. <a href="https://doi.org/10.1021/acsnano.9b04498">https://doi.org/10.1021/acsnano.9b04498</a></li>
+<li>Liu Z, et al. "GANs for inverse design of metasurfaces." <em>Nano Letters</em>, 18, 6570, 2018. <a href="https://doi.org/10.1021/acs.nanolett.8b03171">https://doi.org/10.1021/acs.nanolett.8b03171</a></li>
+<li>Boulaich MH, Ohamouddou S, et al. "AI-Assisted Metasurface Antennas Design/Optimization and Performance Enhancement Techniques: A Comprehensive Survey." <em>IEEE Access</em> (preprint), 2024. <a href="https://www.techrxiv.org/users/973873/articles/1343718">https://www.techrxiv.org/users/973873/articles/1343718</a></li>
+<li>Zeng Q, Zhao Z, Lei H, Wang P. "A deep learning approach for inverse design of gradient mechanical metamaterials." <em>International Journal of Mechanical Sciences</em>, 240, 107920, 2022. <a href="https://doi.org/10.1016/j.ijmecsci.2022.107920">https://doi.org/10.1016/j.ijmecsci.2022.107920</a></li>
+<li>Bastek J-H, Kochmann DM. "Inverse design of nonlinear mechanical metamaterials via video denoising diffusion models." <em>Nature Machine Intelligence</em>, 5, 1466&ndash;1475, 2023. <a href="https://doi.org/10.1038/s42256-023-00762-x">https://doi.org/10.1038/s42256-023-00762-x</a></li>
+<li>Zheng X, Chen TT, Guo X, Samitsu S, Watanabe I. "Controllable inverse design of auxetic metamaterials using deep learning." <em>Materials &amp; Design</em>, 211, 110178, 2021. <a href="https://doi.org/10.1016/j.matdes.2021.110178">https://doi.org/10.1016/j.matdes.2021.110178</a></li>
+<li>Lee D, Chen W, Wang L, Chan Y-C, Chen W. "Data-driven design for metamaterials and multiscale systems: A review." <em>Advanced Materials</em>, 36(8), 2305254, 2024. <a href="https://doi.org/10.1002/adma.202305254">https://doi.org/10.1002/adma.202305254</a></li>
+</ol>
+
+</body>
+</html>

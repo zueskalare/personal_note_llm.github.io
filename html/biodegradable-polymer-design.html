@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI and Large Language Models Are Transforming Biodegradable Polymer Design</title>
+    <title>AI and Large Language Models in Biodegradable Polymer Design</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <style>
         :root {
             --accent: #2c3e6b;
@@ -18,20 +25,17 @@
             --blockquote-border: #2c3e6b;
             --code-bg: #f4f4f8;
             --hr-color: #c8cdd8;
+            --cite-color: #3d5a99;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: Georgia, 'Times New Roman', Times, serif;
             line-height: 1.8;
             color: var(--text);
             background: var(--bg);
-            max-width: 52em;
+            max-width: 54em;
             margin: 0 auto;
             padding: 2em 1.5em 4em;
         }
@@ -46,14 +50,8 @@
             border-bottom: 1px solid transparent;
             transition: border-color 0.2s;
         }
-
-        .back-link:hover {
-            border-bottom-color: var(--accent);
-        }
-
-        .back-link::before {
-            content: "\2190\00a0";
-        }
+        .back-link:hover { border-bottom-color: var(--accent); }
+        .back-link::before { content: "\2190\00a0"; }
 
         h1 {
             font-size: 2em;
@@ -62,16 +60,6 @@
             margin-bottom: 0.3em;
             border-bottom: 3px solid var(--accent);
             padding-bottom: 0.4em;
-        }
-
-        .abstract {
-            font-size: 1.05em;
-            color: var(--text-secondary);
-            margin: 1.5em 0 2em;
-            padding: 1.2em 1.5em;
-            background: var(--blockquote-bg);
-            border-left: 4px solid var(--accent);
-            border-radius: 0 6px 6px 0;
         }
 
         h2 {
@@ -83,16 +71,19 @@
         }
 
         h3 {
-            font-size: 1.15em;
+            font-size: 1.18em;
             color: var(--accent-light);
-            margin: 1.5em 0 0.5em;
+            margin: 1.6em 0 0.5em;
         }
 
-        p {
-            margin: 0.8em 0;
-            text-align: justify;
-            hyphens: auto;
+        h4 {
+            font-size: 1.05em;
+            color: var(--accent-light);
+            margin: 1.2em 0 0.4em;
+            font-style: italic;
         }
+
+        p { margin: 0.8em 0; text-align: justify; hyphens: auto; }
 
         a {
             color: var(--accent);
@@ -100,14 +91,17 @@
             text-decoration-color: rgba(44, 62, 107, 0.3);
             transition: text-decoration-color 0.2s;
         }
+        a:hover { text-decoration-color: var(--accent); }
 
-        a:hover {
-            text-decoration-color: var(--accent);
-        }
+        strong { color: var(--accent); }
 
-        strong {
-            color: var(--accent);
+        sup a.cite {
+            color: var(--cite-color);
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 0 0.05em;
         }
+        sup a.cite:hover { text-decoration: underline; }
 
         hr {
             border: none;
@@ -132,10 +126,7 @@
             border-radius: 0 4px 4px 0;
             color: var(--text-secondary);
         }
-
-        blockquote p {
-            margin: 0.4em 0;
-        }
+        blockquote p { margin: 0.4em 0; }
 
         code {
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
@@ -144,7 +135,6 @@
             padding: 0.15em 0.4em;
             border-radius: 3px;
         }
-
         pre {
             background: var(--code-bg);
             padding: 1em 1.2em;
@@ -152,61 +142,57 @@
             overflow-x: auto;
             margin: 1em 0;
         }
+        pre code { background: none; padding: 0; }
 
-        pre code {
-            background: none;
-            padding: 0;
-        }
+        ul, ol { margin: 0.8em 0 0.8em 1.6em; }
+        li { margin: 0.3em 0; }
 
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 1.2em 0 2em;
-            border-radius: 6px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-        }
-
-        table {
+        main table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.88em;
-            line-height: 1.5;
+            margin: 1.2em 0 2em;
+            font-size: 0.9em;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+            border-radius: 6px;
+            overflow: hidden;
         }
-
-        thead th {
+        main table thead th {
             background: var(--accent);
             color: #fff;
             font-weight: 600;
             padding: 0.7em 0.8em;
             text-align: left;
-            white-space: nowrap;
         }
-
-        tbody td {
+        main table tbody td {
             padding: 0.6em 0.8em;
             border-bottom: 1px solid var(--border);
             vertical-align: top;
         }
+        main table tbody tr:nth-child(even) { background: var(--table-stripe); }
+        main table tbody tr:hover { background: var(--table-header-bg); }
 
-        tbody tr:nth-child(even) {
-            background: var(--table-stripe);
+        ol.references {
+            margin: 1em 0 1em 0;
+            padding-left: 2.6em;
+            list-style: decimal;
+            font-size: 0.92em;
+            color: var(--text-secondary);
         }
-
-        tbody tr:hover {
-            background: var(--table-header-bg);
+        ol.references li {
+            margin: 0.5em 0;
+            line-height: 1.55;
+            padding-left: 0.3em;
+        }
+        ol.references li:target {
+            background: #fff7d6;
+            border-radius: 3px;
         }
 
         @media (max-width: 700px) {
-            body {
-                padding: 1em;
-                font-size: 0.95em;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            table {
-                font-size: 0.8em;
-            }
+            body { padding: 1em; font-size: 0.95em; }
+            h1 { font-size: 1.5em; }
+            main table { font-size: 0.8em; }
         }
     </style>
 </head>
@@ -214,323 +200,1144 @@
 
 <a href="../index.html" class="back-link">Back to Home</a>
 
-<h1>AI and Large Language Models Are Transforming Biodegradable Polymer Design</h1>
-
-<div class="abstract">
-<strong>The convergence of large language models, generative AI, and polymer informatics has created an unprecedented acceleration in the discovery and design of biodegradable polymers.</strong> Between 2020 and 2025, over 75 papers have established the foundations of this interdisciplinary field &mdash; from transformer-based property predictors and graph neural networks to multi-objective Bayesian optimization of degradable formulations. The most consequential advances include polyBERT&rsquo;s ability to fingerprint 100 million polymers, multitask neural networks that identified 14 PHA bioplastics to replace petroleum-based commodity plastics, and the first regression model for predicting polymer biodegradation rates. Yet the field remains nascent for biodegradable systems specifically: most generative AI work has targeted dielectrics and electrolytes, leaving substantial whitespace for sustainability-focused inverse design. This review catalogues and analyzes all major contributions, organized thematically, to serve as a roadmap for future research at this critical intersection.
-</div>
-
-<hr>
-
-<h2 id="1-transformer-based-language-models-for-polymer-property-prediction">1. Transformer-Based Language Models for Polymer Property Prediction</h2>
-
-<p>The application of LLMs to polymer informatics represents the field&rsquo;s most rapid growth area. <strong>polyBERT</strong> (Kuenneth &amp; Ramprasad, 2023) established the landmark: a DeBERTa-based chemical language model trained on 100 million hypothetical polymer SMILES strings that generates learned fingerprints predicting ~29 properties, outperforming handcrafted descriptors by two orders of magnitude in speed while preserving accuracy.</p>
-
-<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-39868-6/MediaObjects/41467_2023_39868_Fig1_HTML.png" alt="Fig. 1: Polymer informatics with polyBERT." style="max-width: min(500px, 100%)">
-
-<p><strong>TransPolymer</strong> (Xu et al., 2023) adopted a RoBERTa architecture with a chemically aware tokenizer, pre-trained via masked language modeling on ~5 million augmented polymer SMILES from the PI1M dataset. It demonstrated superior performance across 10 polymer property benchmarks including glass transition temperature (Tg), bandgap, and dielectric constant.</p>
-
-<img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41524-023-01016-5/MediaObjects/41524_2023_1016_Fig1_HTML.png" alt="Fig. 1: Overview of TransPolymer." style="max-width: min(500px, 100%)">
-
-<p><strong>PolyNC</strong> (Qiu et al., 2024) pushed boundaries by combining natural language prompts with SMILES in a T5-based text-to-text framework, handling both regression and classification across 22,970 curated data points. This model treats polymer property prediction as a unified language task &mdash; a paradigm that may reshape how researchers interact with polymer data.</p>
-
-<img src="https://pubs.rsc.org/image/article/2024/sc/d3sc05079c/d3sc05079c-f2.gif" alt="d3sc05079c-f2.gif" style="max-width: min(400px, 100%)">
-
-<p>General-purpose LLMs have also proven effective. Jablonka et al. (2024) demonstrated that fine-tuned GPT-3 performs comparably to or outperforms dedicated ML models for molecular property prediction, especially in low-data regimes, and even enables inverse design by simply inverting questions. Hatakeyama-Sato et al. (2023) showed that GPT-4 can assist with molecular descriptor selection for polymer informatics by leveraging its embedded domain knowledge to guide feature engineering. Most recently, Gupta et al. (2025) benchmarked fine-tuned LLaMA-3-8B and GPT-3.5 against polyBERT, polyGNN, and Polymer Genome pipelines for thermal property prediction, providing the first systematic comparison of general-purpose LLMs versus polymer-specific models.</p>
-
-<p><a href="https://www.nature.com/articles/s41524-024-01304-8?fromPaywallRec=false"><strong>Predicting polymerization reactions via transfer learning using chemical language models</strong></a> &mdash; Polymers are candidate materials for a wide range of sustainability applications such as carbon capture and energy storage. However, computational polymer discovery lacks automated analysis of reaction pathways and stability assessment through retro-synthesis. Here, we report an extension of transformer-based language models to polymerization for both reaction and retrosynthesis tasks. To that end, we have curated a polymerization dataset for vinyl polymers covering reactions and retrosynthesis for representative homo-polymers and co-polymers. Overall, we obtain a forward model Top-4 accuracy of 80% and a backward model Top-4 accuracy of 60%. We further analyze the model performance with representative polymerization examples and evaluate its prediction quality from a materials science perspective. To enable validation and reuse, we have made our models and data available in public repositories.</p>
-
-<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-024-01304-8/MediaObjects/41524_2024_1304_Fig1_HTML.png" alt="Fig. 1: Problem representation.">
-
-<p>Transfer learning and foundation models address polymer science&rsquo;s chronic data scarcity. Zhang et al. (2023) showed that transformer models pre-trained on large small-molecule datasets can be successfully fine-tuned on polymer tasks. Wang et al. (2024) introduced MMPolymer, a multimodal multitask pretraining framework combining structural and textual polymer representations.</p>
-
-<p><a href="https://www.nature.com/articles/s41524-024-01466-5?fromPaywallRec=false"><strong>On-demand reverse design of polymers with PolyTAO</strong></a></p>
-
-<img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41524-024-01466-5/MediaObjects/41524_2024_1466_Fig1_HTML.png" alt="Fig. 1: Polymer Generation with PolyTAO.">
-
-<h3>References &mdash; Section 1</h3>
-
-<div class="table-wrapper">
+<main>
+<p><strong>The convergence of large language models, generative AI, and
+polymer informatics has created an unprecedented acceleration in the
+discovery and design of biodegradable polymers.</strong> Between 2020
+and 2025, over 75 papers have established the foundations of this
+interdisciplinary field — from transformer-based property predictors and
+graph neural networks to multi-objective Bayesian optimization of
+degradable formulations. The most consequential advances include
+polyBERT's ability to fingerprint 100 million polymers, multitask neural
+networks that identified 14 PHA bioplastics to replace petroleum-based
+commodity plastics, and the first regression model for predicting
+polymer biodegradation rates. Yet the field remains nascent for
+biodegradable systems specifically: most generative AI work has targeted
+dielectrics and electrolytes, leaving substantial whitespace for
+sustainability-focused inverse design. This review catalogues and
+analyzes all major contributions, organized thematically, to serve as a
+roadmap for future research at this critical intersection.</p>
+<hr />
+<h2
+id="1-transformer-based-language-models-for-polymer-property-prediction">1.
+Transformer-Based Language Models for Polymer Property Prediction</h2>
+<p>The application of LLMs to polymer informatics represents the field's
+most rapid growth area. <strong>polyBERT</strong> (Kuenneth &amp;
+Ramprasad, 2023) established the landmark: a DeBERTa-based chemical
+language model trained on 100 million hypothetical polymer SMILES
+strings that generates learned fingerprints predicting ~29 properties,
+outperforming handcrafted descriptors by two orders of magnitude in
+speed while preserving accuracy.<img
+src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-39868-6/MediaObjects/41467_2023_39868_Fig1_HTML.png"
+alt="Fig. 1: Polymer informatics with polyBERT.|500" /></p>
+<p><strong>TransPolymer</strong> (Xu et al., 2023) adopted a RoBERTa
+architecture with a chemically aware tokenizer, pre-trained via masked
+language modeling on ~5 million augmented polymer SMILES from the PI1M
+dataset. It demonstrated superior performance across 10 polymer property
+benchmarks including glass transition temperature (Tg), bandgap, and
+dielectric constant.<img
+src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41524-023-01016-5/MediaObjects/41524_2023_1016_Fig1_HTML.png"
+alt="Fig. 1: Overview of TransPolymer.|500" /></p>
+<p><strong>PolyNC</strong> (Qiu et al., 2024) pushed boundaries by
+combining natural language prompts with SMILES in a T5-based
+text-to-text framework, handling both regression and classification
+across 22,970 curated data points. This model treats polymer property
+prediction as a unified language task — a paradigm that may reshape how
+researchers interact with polymer data.<img
+src="https://pubs.rsc.org/image/article/2024/sc/d3sc05079c/d3sc05079c-f2.gif"
+alt="d3sc05079c-f2.gif|400" /></p>
+<p>General-purpose LLMs have also proven effective. Jablonka et al.
+(2024) demonstrated that fine-tuned GPT-3 performs comparably to or
+outperforms dedicated ML models for molecular property prediction,
+especially in low-data regimes, and even enables inverse design by
+simply inverting questions. Hatakeyama-Sato et al. (2023) showed that
+GPT-4 can assist with molecular descriptor selection for polymer
+informatics by leveraging its embedded domain knowledge to guide feature
+engineering. Most recently, Gupta et al. (2025) benchmarked fine-tuned
+LLaMA-3-8B and GPT-3.5 against polyBERT, polyGNN, and Polymer Genome
+pipelines for thermal property prediction, providing the first
+systematic comparison of general-purpose LLMs versus polymer-specific
+models.</p>
+<p><a
+href="https://www.nature.com/articles/s41524-024-01304-8?fromPaywallRec=false"><strong>Predicting
+polymerization reactions via transfer learning using chemical language
+models</strong></a>Polymers are candidate materials for a wide range of
+sustainability applications such as carbon capture and energy storage.
+However, computational polymer discovery lacks automated analysis of
+reaction pathways and stability assessment through retro-synthesis.
+Here, we report an extension of transformer-based language models to
+polymerization for both reaction and retrosynthesis tasks. To that end,
+we have curated a polymerization dataset for vinyl polymers covering
+reactions and retrosynthesis for representative homo-polymers and
+co-polymers. Overall, we obtain a forward model Top-4 accuracy of 80%
+and a backward model Top-4 accuracy of 60%. We further analyze the model
+performance with representative polymerization examples and evaluate its
+prediction quality from a materials science perspective. To enable
+validation and reuse, we have made our models and data available in
+public repositories. <img
+src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-024-01304-8/MediaObjects/41524_2024_1304_Fig1_HTML.png"
+alt="Fig. 1: Problem representation." /></p>
+<p>Transfer learning and foundation models address polymer science's
+chronic data scarcity. Zhang et al. (2023) showed that transformer
+models pre-trained on large small-molecule datasets can be successfully
+fine-tuned on polymer tasks. Wang et al. (2024) introduced MMPolymer, a
+multimodal multitask pretraining framework combining structural and
+textual polymer representations. <a
+href="https://www.nature.com/articles/s41524-024-01466-5?fromPaywallRec=false"><strong>On-demand
+reverse design of polymers with PolyTAO</strong></a> <img
+src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41524-024-01466-5/MediaObjects/41524_2024_1466_Fig1_HTML.png"
+alt="Fig. 1: Polymer Generation with PolyTAO." /></p>
+<h3 id="references--section-1">References — Section 1</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>1</td><td>polyBERT: A chemical language model to enable fully machine-driven ultrafast polymer informatics</td><td>Kuenneth, C. &amp; Ramprasad, R.</td><td>Nature Communications</td><td>2023</td><td><a href="https://doi.org/10.1038/s41467-023-39868-6">DOI</a></td></tr>
-<tr><td>2</td><td>TransPolymer: A transformer-based language model for polymer property predictions</td><td>Xu, C. et al.</td><td>npj Computational Materials</td><td>2023</td><td><a href="https://doi.org/10.1038/s41524-023-01016-5">DOI</a></td></tr>
-<tr><td>3</td><td>PolyNC: A natural and chemical language model for unified polymer properties</td><td>Qiu, H. et al.</td><td>Chemical Science</td><td>2024</td><td><a href="https://doi.org/10.1039/D3SC05079C">DOI</a></td></tr>
-<tr><td>4</td><td>Leveraging large language models for predictive chemistry</td><td>Jablonka, K.M. et al.</td><td>Nature Machine Intelligence</td><td>2024</td><td><a href="https://doi.org/10.1038/s42256-023-00788-1">DOI</a></td></tr>
-<tr><td>5</td><td>Using GPT-4 in parameter selection of polymer informatics</td><td>Hatakeyama-Sato, K. et al.</td><td>Digital Discovery</td><td>2023</td><td><a href="https://doi.org/10.1039/D3DD00138E">DOI</a></td></tr>
-<tr><td>6</td><td>Benchmarking large language models for polymer property predictions</td><td>Gupta, S. et al.</td><td>arXiv preprint</td><td>2025</td><td><a href="https://arxiv.org/abs/2506.02129">arXiv</a></td></tr>
-<tr><td>7</td><td>Transferring a molecular foundation model for polymer property predictions</td><td></td><td></td><td>2023</td><td><a href="https://doi.org/10.1021/acs.jcim.3c01650">DOI</a></td></tr>
-<tr><td>8</td><td>MMPolymer: A multimodal multitask pretraining framework for polymer property prediction</td><td></td><td></td><td>2024</td><td><a href="https://doi.org/10.1145/3627673.3679590">DOI</a></td></tr>
+<tr>
+<td>1</td>
+<td>polyBERT: A chemical language model to enable fully machine-driven
+ultrafast polymer informatics</td>
+<td>Kuenneth, C. &amp; Ramprasad, R.</td>
+<td>Nature Communications</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1038/s41467-023-39868-6">DOI</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>TransPolymer: A transformer-based language model for polymer
+property predictions</td>
+<td>Xu, C. et al.</td>
+<td>npj Computational Materials</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1038/s41524-023-01016-5">DOI</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>PolyNC: A natural and chemical language model for unified polymer
+properties</td>
+<td>Qiu, H. et al.</td>
+<td>Chemical Science</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1039/D3SC05079C">DOI</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Leveraging large language models for predictive chemistry</td>
+<td>Jablonka, K.M. et al.</td>
+<td>Nature Machine Intelligence</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1038/s42256-023-00788-1">DOI</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Using GPT-4 in parameter selection of polymer informatics</td>
+<td>Hatakeyama-Sato, K. et al.</td>
+<td>Digital Discovery</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1039/D3DD00138E">DOI</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Benchmarking large language models for polymer property
+predictions</td>
+<td>Gupta, S. et al.</td>
+<td>arXiv preprint</td>
+<td>2025</td>
+<td><a href="https://arxiv.org/abs/2506.02129">arXiv</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Transferring a molecular foundation model for polymer property
+predictions</td>
+<td></td>
+<td></td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1021/acs.jcim.3c01650">DOI</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>MMPolymer: A multimodal multitask pretraining framework for polymer
+property prediction</td>
+<td></td>
+<td></td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1145/3627673.3679590">DOI</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
-<h2 id="2-nlp-pipelines-for-extracting-polymer-data-from-literature">2. NLP Pipelines for Extracting Polymer Data from Literature</h2>
-
-<p>Automated extraction of polymer data from the scientific literature has matured into a scalable pipeline. <strong>MaterialsBERT</strong> (Shetty et al., 2023) &mdash; a BERT model pre-trained on 2.4 million materials science abstracts &mdash; powers a pipeline that extracted ~300,000 material property records from ~130,000 polymer abstracts in 60 hours, outperforming BioBERT, ChemBERT, and MatSciBERT on 3 of 5 NER benchmarks.</p>
-
-<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-023-01003-w/MediaObjects/41524_2023_1003_Fig1_HTML.png" alt="Fig. 1: Pipeline used for extracting material property records from a corpus of abstracts.">
-
-<p>This effort scaled dramatically when Gupta et al. (2024) combined GPT-3.5 and LLaMA-2 with MaterialsBERT to process full-text articles rather than abstracts alone, extracting over one million records for 24 properties of 106,000+ unique polymers from ~2.4 million articles. This represents the largest automated polymer data extraction effort to date.</p>
-
-<img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs43246-024-00708-9/MediaObjects/43246_2024_708_Fig1_HTML.png" alt="Fig. 1: Overall workflow to extract polymer property data.">
-
-<p>Earlier foundational work by Shetty et al. (2021) demonstrated that Word2Vec embeddings trained on 500,000 polymer papers can capture latent materials science knowledge and predict new polymer-application pairings. The same group addressed the polymer name normalization challenge (Shetty &amp; Ramprasad, 2021), achieving F1 = 0.85 for mapping diverse polymer names to canonical forms &mdash; a critical preprocessing step.</p>
-
-<p><strong>MatSciBERT</strong> (Gupta et al., 2022) established a materials-domain language model by continuing pre-training of SciBERT on a 285-million-word materials corpus, achieving state-of-the-art NER and relation classification. The <strong>PolyIE</strong> benchmark (Cheung et al., 2024) &mdash; the first scientific information extraction dataset for polymers, with expert annotations from 146 full-length articles &mdash; found that fine-tuned domain-specific models outperform GPT-3.5 in few-shot polymer NER.</p>
-
-<h3>References &mdash; Section 2</h3>
-
-<div class="table-wrapper">
+<hr />
+<h2 id="2-nlp-pipelines-for-extracting-polymer-data-from-literature">2.
+NLP Pipelines for Extracting Polymer Data from Literature</h2>
+<p>Automated extraction of polymer data from the scientific literature
+has matured into a scalable pipeline. <strong>MaterialsBERT</strong>
+(Shetty et al., 2023) — a BERT model pre-trained on 2.4 million
+materials science abstracts — powers a pipeline that extracted ~300,000
+material property records from ~130,000 polymer abstracts in 60 hours,
+outperforming BioBERT, ChemBERT, and MatSciBERT on 3 of 5 NER
+benchmarks.<img
+src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-023-01003-w/MediaObjects/41524_2023_1003_Fig1_HTML.png"
+alt="Fig. 1: Pipeline used for extracting material property records from a corpus of abstracts." /></p>
+<p>This effort scaled dramatically when Gupta et al. (2024) combined
+GPT-3.5 and LLaMA-2 with MaterialsBERT to process full-text articles
+rather than abstracts alone, extracting over one million records for 24
+properties of 106,000+ unique polymers from ~2.4 million articles. This
+represents the largest automated polymer data extraction effort to
+date.<img
+src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs43246-024-00708-9/MediaObjects/43246_2024_708_Fig1_HTML.png"
+alt="Fig. 1: Overall workflow to extract polymer property data." /></p>
+<p>Earlier foundational work by Shetty et al. (2021) demonstrated that
+Word2Vec embeddings trained on 500,000 polymer papers can capture latent
+materials science knowledge and predict new polymer-application
+pairings. The same group addressed the polymer name normalization
+challenge (Shetty &amp; Ramprasad, 2021), achieving F1 = 0.85 for
+mapping diverse polymer names to canonical forms — a critical
+preprocessing step.</p>
+<p><strong>MatSciBERT</strong> (Gupta et al., 2022) established a
+materials-domain language model by continuing pre-training of SciBERT on
+a 285-million-word materials corpus, achieving state-of-the-art NER and
+relation classification. The <strong>PolyIE</strong> benchmark (Cheung
+et al., 2024) — the first scientific information extraction dataset for
+polymers, with expert annotations from 146 full-length articles — found
+that fine-tuned domain-specific models outperform GPT-3.5 in few-shot
+polymer NER.</p>
+<h3 id="references--section-2">References — Section 2</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>9</td><td>A general-purpose material property data extraction pipeline from large polymer corpora using NLP</td><td>Shetty, P. et al.</td><td>npj Computational Materials</td><td>2023</td><td><a href="https://doi.org/10.1038/s41524-023-01003-w">DOI</a></td></tr>
-<tr><td>10</td><td>Data extraction from polymer literature using large language models</td><td>Gupta, S. et al.</td><td>Communications Materials</td><td>2024</td><td><a href="https://doi.org/10.1038/s43246-024-00708-9">DOI</a></td></tr>
-<tr><td>11</td><td>Automated knowledge extraction from polymer literature using NLP</td><td>Shetty, P. et al.</td><td>iScience</td><td>2021</td><td><a href="https://doi.org/10.1016/j.isci.2020.101922">DOI</a></td></tr>
-<tr><td>12</td><td>Machine-guided polymer knowledge extraction: named entity normalization</td><td>Shetty, P. &amp; Ramprasad, R.</td><td>J. Chem. Inf. Model.</td><td>2021</td><td><a href="https://doi.org/10.1021/acs.jcim.1c00554">DOI</a></td></tr>
-<tr><td>13</td><td>MatSciBERT: A materials domain language model for text mining</td><td>Gupta, T. et al.</td><td>npj Computational Materials</td><td>2022</td><td><a href="https://doi.org/10.1038/s41524-022-00784-w">DOI</a></td></tr>
-<tr><td>14</td><td>PolyIE: A dataset of information extraction from polymer material scientific literature</td><td>Cheung, J. et al.</td><td>NAACL 2024</td><td>2024</td><td><a href="https://doi.org/10.18653/v1/2024.naacl-long.131">DOI</a></td></tr>
+<tr>
+<td>9</td>
+<td>A general-purpose material property data extraction pipeline from
+large polymer corpora using NLP</td>
+<td>Shetty, P. et al.</td>
+<td>npj Computational Materials</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1038/s41524-023-01003-w">DOI</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Data extraction from polymer literature using large language
+models</td>
+<td>Gupta, S. et al.</td>
+<td>Communications Materials</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1038/s43246-024-00708-9">DOI</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Automated knowledge extraction from polymer literature using
+NLP</td>
+<td>Shetty, P. et al.</td>
+<td>iScience</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1016/j.isci.2020.101922">DOI</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Machine-guided polymer knowledge extraction: named entity
+normalization</td>
+<td>Shetty, P. &amp; Ramprasad, R.</td>
+<td>J. Chem. Inf. Model.</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1021/acs.jcim.1c00554">DOI</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>MatSciBERT: A materials domain language model for text mining</td>
+<td>Gupta, T. et al.</td>
+<td>npj Computational Materials</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1038/s41524-022-00784-w">DOI</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>PolyIE: A dataset of information extraction from polymer material
+scientific literature</td>
+<td>Cheung, J. et al.</td>
+<td>NAACL 2024</td>
+<td>2024</td>
+<td><a
+href="https://doi.org/10.18653/v1/2024.naacl-long.131">DOI</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
-<h2 id="3-graph-neural-networks-and-learned-polymer-representations">3. Graph Neural Networks and Learned Polymer Representations</h2>
-
-<p>Polymer representation has undergone a paradigm shift from handcrafted fingerprints to learned representations. <strong>polyGNN</strong> (Gurnani et al., 2023) introduced a GNN architecture that learns fingerprints directly from SMILES-based periodic graphs with invariance under translation and repeat-unit addition, predicting up to 36 properties for 13,388 polymers while accelerating feature extraction by 1&ndash;2 orders of magnitude.</p>
-
-<p>The challenge that polymers are molecular ensembles rather than single molecules was addressed by Aldeghi &amp; Coley (2022), who developed a weighted directed message-passing neural network (wD-MPNN) capturing chain architecture, monomer stoichiometry, and degree of polymerization. Queen et al. (2023) built PolymerGNN for multitask property prediction of complex heterogeneous polyesters.</p>
-
-<p>Self-supervised learning has emerged as a key strategy. Gao et al. (2024) demonstrated that ensemble self-supervised pre-training reduces RMSE by up to 28.4% for polymer electronic properties. Volgin et al. (2022) showed transfer learning from synthetic datasets of ~50,000 samples dramatically boosts GNN prediction for polymer families with limited experimental data.</p>
-
-<p>Traditional ML benchmarking remains important. Tao et al. (2021) systematically compared 79 ML models for Tg prediction, finding random forests with Morgan fingerprints yielded the best generalization. Park et al. (2022) and Hu et al. (2023) demonstrated graph convolutional networks achieving R&sup2; ~0.9 for Tg with enhanced interpretability. Chen et al. (2024) assembled a &gt;900-polymer Tg dataset and deployed it as a public web application. Li et al. (2024) introduced Lieconv-Tg using Lie group equivariant neural networks for orientation-invariant Tg prediction from 3D structures. Ru &amp; Li (2024) combined graph attention networks with XGBoost in GATBoost, mining important substructures.</p>
-
-<h3>References &mdash; Section 3</h3>
-
-<div class="table-wrapper">
+<hr />
+<h2 id="3-graph-neural-networks-and-learned-polymer-representations">3.
+Graph Neural Networks and Learned Polymer Representations</h2>
+<p>Polymer representation has undergone a paradigm shift from
+handcrafted fingerprints to learned representations.
+<strong>polyGNN</strong> (Gurnani et al., 2023) introduced a GNN
+architecture that learns fingerprints directly from SMILES-based
+periodic graphs with invariance under translation and repeat-unit
+addition, predicting up to 36 properties for 13,388 polymers while
+accelerating feature extraction by 1–2 orders of magnitude.</p>
+<p>The challenge that polymers are molecular ensembles rather than
+single molecules was addressed by Aldeghi &amp; Coley (2022), who
+developed a weighted directed message-passing neural network (wD-MPNN)
+capturing chain architecture, monomer stoichiometry, and degree of
+polymerization. Queen et al. (2023) built PolymerGNN for multitask
+property prediction of complex heterogeneous polyesters.</p>
+<p>Self-supervised learning has emerged as a key strategy. Gao et al.
+(2024) demonstrated that ensemble self-supervised pre-training reduces
+RMSE by up to 28.4% for polymer electronic properties. Volgin et al.
+(2022) showed transfer learning from synthetic datasets of ~50,000
+samples dramatically boosts GNN prediction for polymer families with
+limited experimental data.</p>
+<p>Traditional ML benchmarking remains important. Tao et al. (2021)
+systematically compared 79 ML models for Tg prediction, finding random
+forests with Morgan fingerprints yielded the best generalization. Park
+et al. (2022) and Hu et al. (2023) demonstrated graph convolutional
+networks achieving R² ~0.9 for Tg with enhanced interpretability. Chen
+et al. (2024) assembled a &gt;900-polymer Tg dataset and deployed it as
+a public web application. Li et al. (2024) introduced Lieconv-Tg using
+Lie group equivariant neural networks for orientation-invariant Tg
+prediction from 3D structures. Ru &amp; Li (2024) combined graph
+attention networks with XGBoost in GATBoost, mining important
+substructures.</p>
+<h3 id="references--section-3">References — Section 3</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>15</td><td>Polymer informatics at scale with multitask graph neural networks</td><td>Gurnani, R. et al.</td><td>Chemistry of Materials</td><td>2023</td><td><a href="https://doi.org/10.1021/acs.chemmater.2c02991">DOI</a></td></tr>
-<tr><td>16</td><td>A graph representation of molecular ensembles for polymer property prediction</td><td>Aldeghi, M. &amp; Coley, C.W.</td><td>Chemical Science</td><td>2022</td><td><a href="https://doi.org/10.1039/D2SC02839E">DOI</a></td></tr>
-<tr><td>17</td><td>Polymer graph neural networks for multitask property learning</td><td>Queen, O. et al.</td><td>npj Computational Materials</td><td>2023</td><td><a href="https://doi.org/10.1038/s41524-023-01034-3">DOI</a></td></tr>
-<tr><td>18</td><td>Self-supervised graph neural networks for polymer property prediction</td><td>Gao, Q. et al.</td><td>Mol. Syst. Des. Eng.</td><td>2024</td><td><a href="https://doi.org/10.1039/D4ME00088A">DOI</a></td></tr>
-<tr><td>19</td><td>ML with enormous synthetic data sets: predicting Tg of polyimides using GCNN</td><td>Volgin, I.V. et al.</td><td>ACS Omega</td><td>2022</td><td><a href="https://doi.org/10.1021/acsomega.2c04649">DOI</a></td></tr>
-<tr><td>20</td><td>Benchmarking ML models for polymer informatics: Tg example</td><td>Tao, L. et al.</td><td>J. Chem. Inf. Model.</td><td>2021</td><td><a href="https://doi.org/10.1021/acs.jcim.1c01031">DOI</a></td></tr>
-<tr><td>21</td><td>Prediction and interpretation of polymer properties using GCN</td><td>Park, J. et al.</td><td>ACS Polymers Au</td><td>2022</td><td><a href="https://doi.org/10.1021/acspolymersau.1c00050">DOI</a></td></tr>
-<tr><td>22</td><td>Prediction and interpretability of Tg by data-augmented GCNN</td><td>Hu, J. et al.</td><td>ACS Appl. Mater. Interfaces</td><td>2023</td><td><a href="https://doi.org/10.1021/acsami.3c12649">DOI</a></td></tr>
-<tr><td>23</td><td>ML analysis of a large set of homopolymers to predict Tg</td><td>Chen, M. et al.</td><td>Communications Chemistry</td><td>2024</td><td><a href="https://doi.org/10.1038/s42004-024-01305-0">DOI</a></td></tr>
-<tr><td>24</td><td>Large-scale Tg prediction with equivariant neural network (Lieconv-Tg)</td><td>Li, Z. et al.</td><td>ACS Omega</td><td>2024</td><td><a href="https://doi.org/10.1021/acsomega.3c06843">DOI</a></td></tr>
-<tr><td>25</td><td>GATBoost: Mining GAT-based important substructures for property prediction</td><td>Ru, Y. &amp; Li, D.</td><td>Materials Today Communications</td><td>2024</td><td><a href="https://doi.org/10.1016/j.mtcomm.2023.107645">DOI</a></td></tr>
-<tr><td>26</td><td>Predicting polymers&rsquo; Tg by a chemical language processing model</td><td>Chen, G. et al.</td><td>Polymers (MDPI)</td><td>2021</td><td><a href="https://doi.org/10.3390/polym13111898">DOI</a></td></tr>
+<tr>
+<td>15</td>
+<td>Polymer informatics at scale with multitask graph neural
+networks</td>
+<td>Gurnani, R. et al.</td>
+<td>Chemistry of Materials</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1021/acs.chemmater.2c02991">DOI</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>A graph representation of molecular ensembles for polymer property
+prediction</td>
+<td>Aldeghi, M. &amp; Coley, C.W.</td>
+<td>Chemical Science</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1039/D2SC02839E">DOI</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>Polymer graph neural networks for multitask property learning</td>
+<td>Queen, O. et al.</td>
+<td>npj Computational Materials</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1038/s41524-023-01034-3">DOI</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Self-supervised graph neural networks for polymer property
+prediction</td>
+<td>Gao, Q. et al.</td>
+<td>Mol. Syst. Des. Eng.</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1039/D4ME00088A">DOI</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>ML with enormous synthetic data sets: predicting Tg of polyimides
+using GCNN</td>
+<td>Volgin, I.V. et al.</td>
+<td>ACS Omega</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1021/acsomega.2c04649">DOI</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>Benchmarking ML models for polymer informatics: Tg example</td>
+<td>Tao, L. et al.</td>
+<td>J. Chem. Inf. Model.</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1021/acs.jcim.1c01031">DOI</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>Prediction and interpretation of polymer properties using GCN</td>
+<td>Park, J. et al.</td>
+<td>ACS Polymers Au</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1021/acspolymersau.1c00050">DOI</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>Prediction and interpretability of Tg by data-augmented GCNN</td>
+<td>Hu, J. et al.</td>
+<td>ACS Appl. Mater. Interfaces</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1021/acsami.3c12649">DOI</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>ML analysis of a large set of homopolymers to predict Tg</td>
+<td>Chen, M. et al.</td>
+<td>Communications Chemistry</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1038/s42004-024-01305-0">DOI</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td>Large-scale Tg prediction with equivariant neural network
+(Lieconv-Tg)</td>
+<td>Li, Z. et al.</td>
+<td>ACS Omega</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1021/acsomega.3c06843">DOI</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td>GATBoost: Mining GAT-based important substructures for property
+prediction</td>
+<td>Ru, Y. &amp; Li, D.</td>
+<td>Materials Today Communications</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1016/j.mtcomm.2023.107645">DOI</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>Predicting polymers' Tg by a chemical language processing model</td>
+<td>Chen, G. et al.</td>
+<td>Polymers (MDPI)</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.3390/polym13111898">DOI</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
-<h2 id="4-generative-ai-and-reinforcement-learning-for-de-novo-polymer-design">4. Generative AI and Reinforcement Learning for De Novo Polymer Design</h2>
-
-<p>Generative models for polymer inverse design have advanced from variational autoencoders to diffusion transformers. Batra et al. (2020) pioneered syntax-directed VAEs combined with Gaussian process regression to generate polymers robust under extreme conditions, validated by DFT. <strong>polyG2G</strong> (Gurnani et al., 2021) introduced graph-to-graph translation that learns subtle chemical differences between high- and low-performing polymers, generating thousands of novel dielectric candidates confirmed by DFT.</p>
-
-<p>More recent architectures have expanded capability. Jiang et al. (2024) developed a VAE framework for generating topologically diverse polymers (linear, cyclic, branched, dendritic) with target dilute-solution properties. <strong>PolyTAO</strong> (Qiu &amp; Sun, 2024) is a transformer-based autoregressive model trained on ~1 million structure-property pairs for on-demand polymer reverse design. Yang et al. (2024) compared GPT-based (minGPT) and diffusion models for polymer electrolyte design, finding 17 of 46 MD-tested candidates exhibited superior ionic conductivity.</p>
-
-<p><strong>Graph DiT</strong> (Liu et al., 2024) &mdash; accepted as an Oral at NeurIPS 2024 &mdash; represents the state-of-the-art in multi-conditional molecular generation using a diffusion transformer with a graph-dependent noise model. Liu et al. (2023) demonstrated invertible normalizing flow models for molecular graph generation of high-temperature polymer dielectrics. Das et al. (2025) introduced the first CVAE for thermoset shape memory polymers. Vogel et al. (2024) developed a graph-to-string VAE for copolymer inverse design including monomer stoichiometry and chain architecture. Khajeh et al. (2025) presented a self-improvable polymer discovery framework using conditional generative models.</p>
-
-<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-024-01470-9/MediaObjects/41524_2024_1470_Fig1_HTML.png" alt="Fig. 1: Depiction of the workflow of the work reported here." style="max-width: min(500px, 100%)">
-
-<p>Yue et al. (2025) provided the first comprehensive benchmark of six deep generative models (VAE, AAE, ORGAN, CharRNN, REINVENT, GraphINVENT) for de novo polymer design.</p>
-
-<p><strong>Reinforcement learning</strong> has emerged as a powerful tool for property-targeted polymer generation. RLPolyG (2025) generated 4,991 novel polymers with 45.2% improvement in average yield strength. <strong>PolyRL</strong> (Li et al., 2025) established the first standardized benchmark for RL-based polymer generation, integrating GPT-2, LLaMA-2, and multiple RL algorithms (REINVENT, REINFORCE, DPO, PPO).</p>
-
-<img src="https://pubs.rsc.org/image/article/2026/dd/d5dd00272a/d5dd00272a-f1.gif" alt="">
-
-<h3>References &mdash; Section 4</h3>
-
-<div class="table-wrapper">
+<hr />
+<h2
+id="4-generative-ai-and-reinforcement-learning-for-de-novo-polymer-design">4.
+Generative AI and Reinforcement Learning for De Novo Polymer Design</h2>
+<p>Generative models for polymer inverse design have advanced from
+variational autoencoders to diffusion transformers. Batra et al. (2020)
+pioneered syntax-directed VAEs combined with Gaussian process regression
+to generate polymers robust under extreme conditions, validated by DFT.
+<strong>polyG2G</strong> (Gurnani et al., 2021) introduced
+graph-to-graph translation that learns subtle chemical differences
+between high- and low-performing polymers, generating thousands of novel
+dielectric candidates confirmed by DFT.</p>
+<p>More recent architectures have expanded capability. Jiang et al.
+(2024) developed a VAE framework for generating topologically diverse
+polymers (linear, cyclic, branched, dendritic) with target
+dilute-solution properties. <strong>PolyTAO</strong> (Qiu &amp; Sun,
+2024) is a transformer-based autoregressive model trained on ~1 million
+structure-property pairs for on-demand polymer reverse design. Yang et
+al. (2024) compared GPT-based (minGPT) and diffusion models for polymer
+electrolyte design, finding 17 of 46 MD-tested candidates exhibited
+superior ionic conductivity.</p>
+<p><strong>Graph DiT</strong> (Liu et al., 2024) — accepted as an Oral
+at NeurIPS 2024 — represents the state-of-the-art in multi-conditional
+molecular generation using a diffusion transformer with a
+graph-dependent noise model. Liu et al. (2023) demonstrated invertible
+normalizing flow models for molecular graph generation of
+high-temperature polymer dielectrics. Das et al. (2025) introduced the
+first CVAE for thermoset shape memory polymers. Vogel et al. (2024)
+developed a graph-to-string VAE for copolymer inverse design including
+monomer stoichiometry and chain architecture. Khajeh et al. (2025)
+presented a self-improvable polymer discovery framework using
+conditional generative models.<img
+src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-024-01470-9/MediaObjects/41524_2024_1470_Fig1_HTML.png"
+alt="Fig. 1: Depiction of the workflow of the work reported here.|500" /></p>
+<p>Yue et al. (2025) provided the first comprehensive benchmark of six
+deep generative models (VAE, AAE, ORGAN, CharRNN, REINVENT, GraphINVENT)
+for de novo polymer design.</p>
+<p><strong>Reinforcement learning</strong> has emerged as a powerful
+tool for property-targeted polymer generation. RLPolyG (2025) generated
+4,991 novel polymers with 45.2% improvement in average yield strength.
+<strong>PolyRL</strong> (Li et al., 2025) established the first
+standardized benchmark for RL-based polymer generation, integrating
+GPT-2, LLaMA-2, and multiple RL algorithms (REINVENT, REINFORCE, DPO,
+PPO). <img
+src="https://pubs.rsc.org/image/article/2026/dd/d5dd00272a/d5dd00272a-f1.gif" /></p>
+<h3 id="references--section-4">References — Section 4</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>27</td><td>Polymers for extreme conditions designed using syntax-directed VAEs</td><td>Batra, R. et al.</td><td>Chemistry of Materials</td><td>2020</td><td><a href="https://doi.org/10.1021/acs.chemmater.0c03332">DOI</a></td></tr>
-<tr><td>28</td><td>polyG2G: A novel ML algorithm for generative design of polymer dielectrics</td><td>Gurnani, R. et al.</td><td>Chemistry of Materials</td><td>2021</td><td><a href="https://doi.org/10.1021/acs.chemmater.1c02061">DOI</a></td></tr>
-<tr><td>29</td><td>Property-guided generation of complex polymer topologies using VAEs</td><td>Jiang, S. et al.</td><td>npj Computational Materials</td><td>2024</td><td><a href="https://doi.org/10.1038/s41524-024-01328-0">DOI</a></td></tr>
-<tr><td>30</td><td>PolyTAO: On-demand reverse design of polymers</td><td>Qiu, H. &amp; Sun, Z.-Y.</td><td>npj Computational Materials</td><td>2024</td><td><a href="https://doi.org/10.1038/s41524-024-01466-5">DOI</a></td></tr>
-<tr><td>31</td><td>De novo design of polymer electrolytes using GPT-based and diffusion-based models</td><td>Yang, Z. et al.</td><td>npj Computational Materials</td><td>2024</td><td><a href="https://doi.org/10.1038/s41524-024-01470-9">DOI</a></td></tr>
-<tr><td>32</td><td>Graph diffusion transformers for multi-conditional molecular generation</td><td>Liu, G. et al.</td><td>NeurIPS 2024</td><td>2024</td><td><a href="https://arxiv.org/abs/2401.13858">arXiv</a></td></tr>
-<tr><td>33</td><td>High-temperature polymer dielectrics using invertible molecular graph generative model</td><td>Liu, D.-F. et al.</td><td>J. Chem. Inf. Model.</td><td>2023</td><td><a href="https://doi.org/10.1021/acs.jcim.3c01572">DOI</a></td></tr>
-<tr><td>34</td><td>Generative design of thermoset shape memory polymers: a CVAE approach</td><td>Das, A. et al.</td><td>J. Polymer Science</td><td>2025</td><td><a href="https://doi.org/10.1002/pol.20240649">DOI</a></td></tr>
-<tr><td>35</td><td>Inverse design of copolymers including stoichiometry and chain architecture</td><td>Vogel, N. et al.</td><td>arXiv preprint</td><td>2024</td><td><a href="https://arxiv.org/abs/2410.02824">arXiv</a></td></tr>
-<tr><td>36</td><td>A materials discovery framework based on conditional generative models</td><td>Khajeh, A. et al.</td><td>Digital Discovery</td><td>2025</td><td><a href="https://doi.org/10.1039/D4DD00293H">DOI</a></td></tr>
-<tr><td>37</td><td>Benchmarking deep generative models for inverse polymer design</td><td>Yue, T. et al.</td><td>Digital Discovery</td><td>2025</td><td><a href="https://doi.org/10.1039/D4DD00395K">DOI</a></td></tr>
-<tr><td>38</td><td>De novo design of polymers with specified properties using RL (RLPolyG)</td><td>&mdash;</td><td>Macromolecules</td><td>2025</td><td><a href="https://doi.org/10.1021/acs.macromol.5c00427">DOI</a></td></tr>
-<tr><td>39</td><td>PolyRL: RL-guided polymer generation for multi-objective discovery</td><td>Li, W. et al.</td><td>Digital Discovery</td><td>2025</td><td><a href="https://doi.org/10.1039/D5DD00272A">DOI</a></td></tr>
-<tr><td>40</td><td>Generating high-temperature polymer dielectrics with GCN and RL</td><td>&mdash;</td><td>J. Phys. Chem. C</td><td>2025</td><td><a href="https://doi.org/10.1021/acs.jpcc.5c02310">DOI</a></td></tr>
-<tr><td>41</td><td>Discovery of polymers with high bulk modulus and low thermal conductivity via hybrid GA-RL</td><td>&mdash;</td><td>Chem. Eng. J.</td><td>2025</td><td><a href="https://doi.org/10.1016/j.cej.2025.155998">DOI</a></td></tr>
+<tr>
+<td>27</td>
+<td>Polymers for extreme conditions designed using syntax-directed
+VAEs</td>
+<td>Batra, R. et al.</td>
+<td>Chemistry of Materials</td>
+<td>2020</td>
+<td><a href="https://doi.org/10.1021/acs.chemmater.0c03332">DOI</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td>polyG2G: A novel ML algorithm for generative design of polymer
+dielectrics</td>
+<td>Gurnani, R. et al.</td>
+<td>Chemistry of Materials</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1021/acs.chemmater.1c02061">DOI</a></td>
+</tr>
+<tr>
+<td>29</td>
+<td>Property-guided generation of complex polymer topologies using
+VAEs</td>
+<td>Jiang, S. et al.</td>
+<td>npj Computational Materials</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1038/s41524-024-01328-0">DOI</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td>PolyTAO: On-demand reverse design of polymers</td>
+<td>Qiu, H. &amp; Sun, Z.-Y.</td>
+<td>npj Computational Materials</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1038/s41524-024-01466-5">DOI</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>De novo design of polymer electrolytes using GPT-based and
+diffusion-based models</td>
+<td>Yang, Z. et al.</td>
+<td>npj Computational Materials</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1038/s41524-024-01470-9">DOI</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td>Graph diffusion transformers for multi-conditional molecular
+generation</td>
+<td>Liu, G. et al.</td>
+<td>NeurIPS 2024</td>
+<td>2024</td>
+<td><a href="https://arxiv.org/abs/2401.13858">arXiv</a></td>
+</tr>
+<tr>
+<td>33</td>
+<td>High-temperature polymer dielectrics using invertible molecular
+graph generative model</td>
+<td>Liu, D.-F. et al.</td>
+<td>J. Chem. Inf. Model.</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1021/acs.jcim.3c01572">DOI</a></td>
+</tr>
+<tr>
+<td>34</td>
+<td>Generative design of thermoset shape memory polymers: a CVAE
+approach</td>
+<td>Das, A. et al.</td>
+<td>J. Polymer Science</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1002/pol.20240649">DOI</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td>Inverse design of copolymers including stoichiometry and chain
+architecture</td>
+<td>Vogel, N. et al.</td>
+<td>arXiv preprint</td>
+<td>2024</td>
+<td><a href="https://arxiv.org/abs/2410.02824">arXiv</a></td>
+</tr>
+<tr>
+<td>36</td>
+<td>A materials discovery framework based on conditional generative
+models</td>
+<td>Khajeh, A. et al.</td>
+<td>Digital Discovery</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1039/D4DD00293H">DOI</a></td>
+</tr>
+<tr>
+<td>37</td>
+<td>Benchmarking deep generative models for inverse polymer design</td>
+<td>Yue, T. et al.</td>
+<td>Digital Discovery</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1039/D4DD00395K">DOI</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td>De novo design of polymers with specified properties using RL
+(RLPolyG)</td>
+<td>—</td>
+<td>Macromolecules</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1021/acs.macromol.5c00427">DOI</a></td>
+</tr>
+<tr>
+<td>39</td>
+<td>PolyRL: RL-guided polymer generation for multi-objective
+discovery</td>
+<td>Li, W. et al.</td>
+<td>Digital Discovery</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1039/D5DD00272A">DOI</a></td>
+</tr>
+<tr>
+<td>40</td>
+<td>Generating high-temperature polymer dielectrics with GCN and RL</td>
+<td>—</td>
+<td>J. Phys. Chem. C</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1021/acs.jpcc.5c02310">DOI</a></td>
+</tr>
+<tr>
+<td>41</td>
+<td>Discovery of polymers with high bulk modulus and low thermal
+conductivity via hybrid GA-RL</td>
+<td>—</td>
+<td>Chem. Eng. J.</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1016/j.cej.2025.155998">DOI</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
-<h2 id="5-llm-assisted-retrosynthesis-for-polymer-synthesis-planning">5. LLM-Assisted Retrosynthesis for Polymer Synthesis Planning</h2>
-
-<p>A critical gap in AI-driven polymer design &mdash; connecting generated structures to feasible synthesis routes &mdash; is beginning to close. Ma et al. (2025) presented the first fully automated retrosynthesis planning agent for macromolecules, integrating LLMs with knowledge graphs and a novel Multi-branched Reaction Pathway Search Algorithm (MBRPS) to handle polymer-specific challenges where products decompose into multiple intermediates.</p>
-
-<p><strong>Llamole</strong> (Liu et al., 2025) represents the most ambitious integration to date: a multimodal LLM that interleaves text and graph generation for molecular inverse design with retrosynthetic planning. Using A* search with LLM-based cost functions, Llamole increased retrosynthesis success rates from 5% to 35% for drugs and 17.9% for polymers, outperforming 14 adapted LLMs across 12 metrics.</p>
-
-<p>Park et al. (2023) introduced Chemical Markdown Language (CMDL) for flexible representation of polymer experimental data, enabling fine-tuning of Regression Transformer models for generative design of catalysts for ring-opening polymerization. Five generated catalysts were experimentally synthesized and validated, including novel thiourea and guanidine catalysts for polymerization of biodegradable polymers like polylactide and polycarbonates &mdash; making this one of the few studies with closed-loop experimental validation.</p>
-
-<h3>References &mdash; Section 5</h3>
-
-<div class="table-wrapper">
+<hr />
+<h2 id="5-llm-assisted-retrosynthesis-for-polymer-synthesis-planning">5.
+LLM-Assisted Retrosynthesis for Polymer Synthesis Planning</h2>
+<p>A critical gap in AI-driven polymer design — connecting generated
+structures to feasible synthesis routes — is beginning to close. Ma et
+al. (2025) presented the first fully automated retrosynthesis planning
+agent for macromolecules, integrating LLMs with knowledge graphs and a
+novel Multi-branched Reaction Pathway Search Algorithm (MBRPS) to handle
+polymer-specific challenges where products decompose into multiple
+intermediates.</p>
+<p><strong>Llamole</strong> (Liu et al., 2025) represents the most
+ambitious integration to date: a multimodal LLM that interleaves text
+and graph generation for molecular inverse design with retrosynthetic
+planning. Using A* search with LLM-based cost functions, Llamole
+increased retrosynthesis success rates from 5% to 35% for drugs and
+17.9% for polymers, outperforming 14 adapted LLMs across 12 metrics.</p>
+<p>Park et al. (2023) introduced Chemical Markdown Language (CMDL) for
+flexible representation of polymer experimental data, enabling
+fine-tuning of Regression Transformer models for generative design of
+catalysts for ring-opening polymerization. Five generated catalysts were
+experimentally synthesized and validated, including novel thiourea and
+guanidine catalysts for polymerization of biodegradable polymers like
+polylactide and polycarbonates — making this one of the few studies with
+closed-loop experimental validation.</p>
+<h3 id="references--section-5">References — Section 5</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>42</td><td>Automated retrosynthesis planning of macromolecules using LLMs and knowledge graphs</td><td>Ma, Q. et al.</td><td>Macromol. Rapid Commun.</td><td>2025</td><td><a href="https://doi.org/10.1002/marc.202500065">DOI</a></td></tr>
-<tr><td>43</td><td>Llamole: Multimodal LLMs for inverse molecular design with retrosynthetic planning</td><td>Liu, G. et al.</td><td>ICLR 2025</td><td>2025</td><td><a href="https://arxiv.org/abs/2410.04223">arXiv</a></td></tr>
-<tr><td>44</td><td>AI-driven design of catalysts and materials for ring opening polymerization using CMDL</td><td>Park, N.H. et al.</td><td>Nature Communications</td><td>2023</td><td><a href="https://doi.org/10.1038/s41467-023-39396-3">DOI</a></td></tr>
+<tr>
+<td>42</td>
+<td>Automated retrosynthesis planning of macromolecules using LLMs and
+knowledge graphs</td>
+<td>Ma, Q. et al.</td>
+<td>Macromol. Rapid Commun.</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1002/marc.202500065">DOI</a></td>
+</tr>
+<tr>
+<td>43</td>
+<td>Llamole: Multimodal LLMs for inverse molecular design with
+retrosynthetic planning</td>
+<td>Liu, G. et al.</td>
+<td>ICLR 2025</td>
+<td>2025</td>
+<td><a href="https://arxiv.org/abs/2410.04223">arXiv</a></td>
+</tr>
+<tr>
+<td>44</td>
+<td>AI-driven design of catalysts and materials for ring opening
+polymerization using CMDL</td>
+<td>Park, N.H. et al.</td>
+<td>Nature Communications</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1038/s41467-023-39396-3">DOI</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
-<h2 id="6-ml-models-for-biodegradation-prediction-and-multi-objective-sustainable-design">6. ML Models for Biodegradation Prediction and Multi-Objective Sustainable Design</h2>
-
-<p>Sustainability-focused AI/ML for biodegradable polymers is the area with the greatest growth potential. Huang et al. (2025) developed the first regression ML model specifically for polymer biodegradation, curating an aerobic biodegradation dataset of 74 polymers (1,779 data points). Using Morgan fingerprints and thermal decomposition temperature, they achieved R&sup2;_test = 0.66, with SHAP analysis revealing that polyether/polysaccharide substructures promote biodegradation while aromatic rings and side chains inhibit it.</p>
-
-<img src="https://pubs.acs.org/cms/10.1021/acs.est.4c11282/asset/images/medium/es4c11282_0001.gif" alt="">
-
-<p>The most impactful contribution for bioplastic design is Kuenneth et al. (2022), which trained multitask deep neural networks on ~23,000 polymer chemistries and identified 14 PHA-based bioplastics from ~1.4 million candidates as potential replacements for seven petroleum-based commodity plastics that account for 75% of yearly plastic production.</p>
-
-<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs43246-022-00319-2/MediaObjects/43246_2022_319_Fig1_HTML.png" alt="Fig. 1: Bioplastic design using multitask deep learning predictors.">
-
-<p>Multi-objective optimization has proven essential for overcoming the classic toughness-degradability trade-off. Zamengo et al. (2025) applied multi-objective Bayesian optimization with Gaussian process regression to simultaneously optimize degradation rate, strain at break, and Young&rsquo;s modulus for multiblock polyamides.</p>
-
-<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-025-01696-1/MediaObjects/41524_2025_1696_Fig1_HTML.png" alt="Fig. 1: Schematic representation of this work.">
-
-<p>Several studies target specific biodegradable formulations. Yamawaki et al. (2021) constructed ML models for PLA decomposition under composting. White et al. (2024) used heteroscedastic Gaussian process Bayesian optimization to optimize compostable thermoplastic starch films. Multi-objective XGBoost + NSGA-II optimized PLA/spent coffee ground composites (2025). A Bayesian optimization framework using CNN-extracted NMR features for PLA process optimization appeared in npj Materials Degradation (2025).</p>
-
-<p>For recyclable and sustainable polymers more broadly, Atasi et al. (2024) combined genetic algorithms with virtual forward synthesis to design chemically recyclable ring-opening polymerization polymers. Kern et al. (2025) developed an informatics framework screening commercially available monomers to identify ~37,000 candidate recyclable polymers. Kim et al. (2021) demonstrated genetic algorithms generating 132 new polymers meeting extreme property criteria. L&ouml;fgren et al. (2022) applied Bayesian optimization to lignin valorization in green biorefineries.</p>
-
-<p>Gormley &amp; Webb et al. (2023) reviewed ML for polymeric biomaterials, noting that lack of standardized degradation and biocompatibility data remains a major barrier. Laycock et al. (2024) reviewed the Materials 4.0 framework combining multiscale simulations with AI for biodegradable and biobased polymer design.</p>
-
-<h3>References &mdash; Section 6</h3>
-
-<div class="table-wrapper">
+<hr />
+<h2
+id="6-ml-models-for-biodegradation-prediction-and-multi-objective-sustainable-design">6.
+ML Models for Biodegradation Prediction and Multi-Objective Sustainable
+Design</h2>
+<p>Sustainability-focused AI/ML for biodegradable polymers is the area
+with the greatest growth potential. Huang et al. (2025) developed the
+first regression ML model specifically for polymer biodegradation,
+curating an aerobic biodegradation dataset of 74 polymers (1,779 data
+points). Using Morgan fingerprints and thermal decomposition
+temperature, they achieved R²_test = 0.66, with SHAP analysis revealing
+that polyether/polysaccharide substructures promote biodegradation while
+aromatic rings and side chains inhibit it.<img
+src="https://pubs.acs.org/cms/10.1021/acs.est.4c11282/asset/images/medium/es4c11282_0001.gif" /></p>
+<p>The most impactful contribution for bioplastic design is Kuenneth et
+al. (2022), which trained multitask deep neural networks on ~23,000
+polymer chemistries and identified 14 PHA-based bioplastics from ~1.4
+million candidates as potential replacements for seven petroleum-based
+commodity plastics that account for 75% of yearly plastic
+production.<img
+src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs43246-022-00319-2/MediaObjects/43246_2022_319_Fig1_HTML.png"
+alt="Fig. 1: Bioplastic design using multitask deep learning predictors." /></p>
+<p>Multi-objective optimization has proven essential for overcoming the
+classic toughness-degradability trade-off. Zamengo et al. (2025) applied
+multi-objective Bayesian optimization with Gaussian process regression
+to simultaneously optimize degradation rate, strain at break, and
+Young's modulus for multiblock polyamides. <img
+src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41524-025-01696-1/MediaObjects/41524_2025_1696_Fig1_HTML.png"
+alt="Fig. 1: Schematic representation of this work." /> Several studies
+target specific biodegradable formulations. Yamawaki et al. (2021)
+constructed ML models for PLA decomposition under composting. White et
+al. (2024) used heteroscedastic Gaussian process Bayesian optimization
+to optimize compostable thermoplastic starch films. Multi-objective
+XGBoost + NSGA-II optimized PLA/spent coffee ground composites (2025). A
+Bayesian optimization framework using CNN-extracted NMR features for PLA
+process optimization appeared in npj Materials Degradation (2025).</p>
+<p>For recyclable and sustainable polymers more broadly, Atasi et al.
+(2024) combined genetic algorithms with virtual forward synthesis to
+design chemically recyclable ring-opening polymerization polymers. Kern
+et al. (2025) developed an informatics framework screening commercially
+available monomers to identify ~37,000 candidate recyclable polymers.
+Kim et al. (2021) demonstrated genetic algorithms generating 132 new
+polymers meeting extreme property criteria. Löfgren et al. (2022)
+applied Bayesian optimization to lignin valorization in green
+biorefineries.</p>
+<p>Gormley &amp; Webb et al. (2023) reviewed ML for polymeric
+biomaterials, noting that lack of standardized degradation and
+biocompatibility data remains a major barrier. Laycock et al. (2024)
+reviewed the Materials 4.0 framework combining multiscale simulations
+with AI for biodegradable and biobased polymer design.</p>
+<h3 id="references--section-6">References — Section 6</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>45</td><td>Polymer biodegradation in aquatic environments: ML model informed by meta-analysis</td><td>Huang, K. et al.</td><td>Environ. Sci. Technol.</td><td>2025</td><td><a href="https://doi.org/10.1021/acs.est.4c11282">DOI</a></td></tr>
-<tr><td>46</td><td>Bioplastic design using multitask deep neural networks</td><td>Kuenneth, C. et al.</td><td>Communications Materials</td><td>2022</td><td><a href="https://doi.org/10.1038/s43246-022-00319-2">DOI</a></td></tr>
-<tr><td>47</td><td>A ML approach to designing tough, degradable polyamides</td><td>Zamengo, M. et al.</td><td>npj Computational Materials</td><td>2025</td><td><a href="https://doi.org/10.1038/s41524-025-01696-1">DOI</a></td></tr>
-<tr><td>48</td><td>Decomposition factor analysis via Bayesian optimization for compost-degradable polymers</td><td>Yamawaki, R. et al.</td><td>Applied Sciences</td><td>2021</td><td><a href="https://doi.org/10.3390/app11062820">DOI</a></td></tr>
-<tr><td>49</td><td>Optimizing thermoplastic starch film with heteroscedastic GP in Bayesian design</td><td>White, G.M. et al.</td><td>Materials</td><td>2024</td><td><a href="https://doi.org/10.3390/ma17215345">DOI</a></td></tr>
-<tr><td>50</td><td>Multi-objective optimization of PLA/SCG/silane composites</td><td>&mdash;</td><td>RSC Advances</td><td>2025</td><td><a href="https://doi.org/10.1039/D5RA06825H">DOI</a></td></tr>
-<tr><td>51</td><td>Bayesian optimization of biodegradable polymers via ML-driven NMR features</td><td>&mdash;</td><td>npj Materials Degradation</td><td>2025</td><td><a href="https://doi.org/10.1038/s41529-025-00613-7">DOI</a></td></tr>
-<tr><td>52</td><td>Design of recyclable plastics with ML and genetic algorithm</td><td>Atasi, C. et al.</td><td>J. Chem. Inf. Model.</td><td>2024</td><td><a href="https://doi.org/10.1021/acs.jcim.4c01530">DOI</a></td></tr>
-<tr><td>53</td><td>An informatics framework for sustainable, chemically recyclable polymers</td><td>Kern, J. et al.</td><td>npj Computational Materials</td><td>2025</td><td><a href="https://doi.org/10.1038/s41524-025-01683-6">DOI</a></td></tr>
-<tr><td>54</td><td>Polymer design using genetic algorithm and machine learning</td><td>Kim, C. et al.</td><td>Comput. Mater. Sci.</td><td>2021</td><td><a href="https://doi.org/10.1016/j.commatsci.2020.110067">DOI</a></td></tr>
-<tr><td>55</td><td>ML optimization of lignin properties in green biorefineries</td><td>L&ouml;fgren, J. et al.</td><td>ACS Sustain. Chem. Eng.</td><td>2022</td><td><a href="https://doi.org/10.1021/acssuschemeng.2c01895">DOI</a></td></tr>
-<tr><td>56</td><td>Applied ML as a driver for polymeric biomaterials design</td><td>Gormley, A.J. &amp; Webb, M.A. et al.</td><td>Nature Communications</td><td>2023</td><td><a href="https://doi.org/10.1038/s41467-023-40459-8">DOI</a></td></tr>
-<tr><td>57</td><td>Computational approaches for biodegradable and biobased polymers (review)</td><td>Laycock, B. et al.</td><td>Prog. Polym. Sci.</td><td>2024</td><td><a href="https://doi.org/10.1016/j.progpolymsci.2024.100911">DOI</a></td></tr>
-<tr><td>58</td><td>Design of polymer blend electrolytes through ML</td><td>Shen, K.-H. et al.</td><td>Macromolecules</td><td>2021</td><td><a href="https://doi.org/10.1021/acs.macromol.0c01547">DOI</a></td></tr>
-<tr><td>59</td><td>Accelerated development of biomass-based polyurethane adhesives via ML</td><td>&mdash;</td><td>ACS Appl. Mater. Interfaces</td><td>2025</td><td><a href="https://doi.org/10.1021/acsami.4c20371">DOI</a></td></tr>
+<tr>
+<td>45</td>
+<td>Polymer biodegradation in aquatic environments: ML model informed by
+meta-analysis</td>
+<td>Huang, K. et al.</td>
+<td>Environ. Sci. Technol.</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1021/acs.est.4c11282">DOI</a></td>
+</tr>
+<tr>
+<td>46</td>
+<td>Bioplastic design using multitask deep neural networks</td>
+<td>Kuenneth, C. et al.</td>
+<td>Communications Materials</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1038/s43246-022-00319-2">DOI</a></td>
+</tr>
+<tr>
+<td>47</td>
+<td>A ML approach to designing tough, degradable polyamides</td>
+<td>Zamengo, M. et al.</td>
+<td>npj Computational Materials</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1038/s41524-025-01696-1">DOI</a></td>
+</tr>
+<tr>
+<td>48</td>
+<td>Decomposition factor analysis via Bayesian optimization for
+compost-degradable polymers</td>
+<td>Yamawaki, R. et al.</td>
+<td>Applied Sciences</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.3390/app11062820">DOI</a></td>
+</tr>
+<tr>
+<td>49</td>
+<td>Optimizing thermoplastic starch film with heteroscedastic GP in
+Bayesian design</td>
+<td>White, G.M. et al.</td>
+<td>Materials</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.3390/ma17215345">DOI</a></td>
+</tr>
+<tr>
+<td>50</td>
+<td>Multi-objective optimization of PLA/SCG/silane composites</td>
+<td>—</td>
+<td>RSC Advances</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1039/D5RA06825H">DOI</a></td>
+</tr>
+<tr>
+<td>51</td>
+<td>Bayesian optimization of biodegradable polymers via ML-driven NMR
+features</td>
+<td>—</td>
+<td>npj Materials Degradation</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1038/s41529-025-00613-7">DOI</a></td>
+</tr>
+<tr>
+<td>52</td>
+<td>Design of recyclable plastics with ML and genetic algorithm</td>
+<td>Atasi, C. et al.</td>
+<td>J. Chem. Inf. Model.</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1021/acs.jcim.4c01530">DOI</a></td>
+</tr>
+<tr>
+<td>53</td>
+<td>An informatics framework for sustainable, chemically recyclable
+polymers</td>
+<td>Kern, J. et al.</td>
+<td>npj Computational Materials</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1038/s41524-025-01683-6">DOI</a></td>
+</tr>
+<tr>
+<td>54</td>
+<td>Polymer design using genetic algorithm and machine learning</td>
+<td>Kim, C. et al.</td>
+<td>Comput. Mater. Sci.</td>
+<td>2021</td>
+<td><a
+href="https://doi.org/10.1016/j.commatsci.2020.110067">DOI</a></td>
+</tr>
+<tr>
+<td>55</td>
+<td>ML optimization of lignin properties in green biorefineries</td>
+<td>Löfgren, J. et al.</td>
+<td>ACS Sustain. Chem. Eng.</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1021/acssuschemeng.2c01895">DOI</a></td>
+</tr>
+<tr>
+<td>56</td>
+<td>Applied ML as a driver for polymeric biomaterials design</td>
+<td>Gormley, A.J. &amp; Webb, M.A. et al.</td>
+<td>Nature Communications</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1038/s41467-023-40459-8">DOI</a></td>
+</tr>
+<tr>
+<td>57</td>
+<td>Computational approaches for biodegradable and biobased polymers
+(review)</td>
+<td>Laycock, B. et al.</td>
+<td>Prog. Polym. Sci.</td>
+<td>2024</td>
+<td><a
+href="https://doi.org/10.1016/j.progpolymsci.2024.100911">DOI</a></td>
+</tr>
+<tr>
+<td>58</td>
+<td>Design of polymer blend electrolytes through ML</td>
+<td>Shen, K.-H. et al.</td>
+<td>Macromolecules</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1021/acs.macromol.0c01547">DOI</a></td>
+</tr>
+<tr>
+<td>59</td>
+<td>Accelerated development of biomass-based polyurethane adhesives via
+ML</td>
+<td>—</td>
+<td>ACS Appl. Mater. Interfaces</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1021/acsami.4c20371">DOI</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
-<h2 id="7-polymer-informatics-databases-and-platforms">7. Polymer Informatics Databases and Platforms</h2>
-
-<p>The quality and scope of polymer informatics depends fundamentally on data infrastructure. <strong>PI1M</strong> (Ma &amp; Luo, 2020) is a benchmark database of ~1 million polymers generated by a model trained on ~12,000 PolyInfo entries, introducing polymer embedding representations. <strong>Polymer Genome</strong> (Tran et al., 2020) serves as the foundational web-based platform for near-instantaneous polymer property prediction using hierarchical chemical fingerprints combined with Gaussian process regression and neural networks.</p>
-
-<p>Multi-task learning has been critical. Kuenneth et al. (2021) demonstrated that multi-task models using a combined dataset of 36 properties for 13,000+ polymers outperform single-task models by exploiting inherent property correlations.</p>
-
-<p>Newer databases address remaining gaps. <strong>OpenPoly</strong> (2025) offers 3,985 curated experimental data points spanning 26 properties with a multi-task benchmarking framework. <strong>POINT2</strong> (2025) introduces standardized protocols covering prediction accuracy, uncertainty quantification, interpretability, and synthesizability assessment.</p>
-
-<h3>References &mdash; Section 7</h3>
-
-<div class="table-wrapper">
+<hr />
+<h2 id="7-polymer-informatics-databases-and-platforms">7. Polymer
+Informatics Databases and Platforms</h2>
+<p>The quality and scope of polymer informatics depends fundamentally on
+data infrastructure. <strong>PI1M</strong> (Ma &amp; Luo, 2020) is a
+benchmark database of ~1 million polymers generated by a model trained
+on ~12,000 PolyInfo entries, introducing polymer embedding
+representations. <strong>Polymer Genome</strong> (Tran et al., 2020)
+serves as the foundational web-based platform for near-instantaneous
+polymer property prediction using hierarchical chemical fingerprints
+combined with Gaussian process regression and neural networks.</p>
+<p>Multi-task learning has been critical. Kuenneth et al. (2021)
+demonstrated that multi-task models using a combined dataset of 36
+properties for 13,000+ polymers outperform single-task models by
+exploiting inherent property correlations.</p>
+<p>Newer databases address remaining gaps. <strong>OpenPoly</strong>
+(2025) offers 3,985 curated experimental data points spanning 26
+properties with a multi-task benchmarking framework.
+<strong>POINT2</strong> (2025) introduces standardized protocols
+covering prediction accuracy, uncertainty quantification,
+interpretability, and synthesizability assessment.</p>
+<h3 id="references--section-7">References — Section 7</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>60</td><td>PI1M: A benchmark database for polymer informatics</td><td>Ma, R. &amp; Luo, T.</td><td>J. Chem. Inf. Model.</td><td>2020</td><td><a href="https://doi.org/10.1021/acs.jcim.0c00726">DOI</a></td></tr>
-<tr><td>61</td><td>Machine-learning predictions of polymer properties with Polymer Genome</td><td>Tran, H.D. et al.</td><td>J. Applied Physics</td><td>2020</td><td><a href="https://doi.org/10.1063/5.0023759">DOI</a></td></tr>
-<tr><td>62</td><td>Polymer informatics with multi-task learning</td><td>Kuenneth, C. et al.</td><td>Patterns</td><td>2021</td><td><a href="https://doi.org/10.1016/j.patter.2021.100238">DOI</a></td></tr>
-<tr><td>63</td><td>OpenPoly: A polymer database empowering benchmarking and multi-property predictions</td><td>&mdash;</td><td>Chinese J. Polymer Science</td><td>2025</td><td><a href="https://doi.org/10.1007/s10118-025-3402-y">DOI</a></td></tr>
-<tr><td>64</td><td>POINT2: A polymer informatics training and testing database</td><td>&mdash;</td><td>arXiv preprint</td><td>2025</td><td><a href="https://arxiv.org/abs/2503.23491">arXiv</a></td></tr>
+<tr>
+<td>60</td>
+<td>PI1M: A benchmark database for polymer informatics</td>
+<td>Ma, R. &amp; Luo, T.</td>
+<td>J. Chem. Inf. Model.</td>
+<td>2020</td>
+<td><a href="https://doi.org/10.1021/acs.jcim.0c00726">DOI</a></td>
+</tr>
+<tr>
+<td>61</td>
+<td>Machine-learning predictions of polymer properties with Polymer
+Genome</td>
+<td>Tran, H.D. et al.</td>
+<td>J. Applied Physics</td>
+<td>2020</td>
+<td><a href="https://doi.org/10.1063/5.0023759">DOI</a></td>
+</tr>
+<tr>
+<td>62</td>
+<td>Polymer informatics with multi-task learning</td>
+<td>Kuenneth, C. et al.</td>
+<td>Patterns</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1016/j.patter.2021.100238">DOI</a></td>
+</tr>
+<tr>
+<td>63</td>
+<td>OpenPoly: A polymer database empowering benchmarking and
+multi-property predictions</td>
+<td>—</td>
+<td>Chinese J. Polymer Science</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1007/s10118-025-3402-y">DOI</a></td>
+</tr>
+<tr>
+<td>64</td>
+<td>POINT2: A polymer informatics training and testing database</td>
+<td>—</td>
+<td>arXiv preprint</td>
+<td>2025</td>
+<td><a href="https://arxiv.org/abs/2503.23491">arXiv</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
-<h2 id="8-review-papers-and-perspectives">8. Review Papers and Perspectives</h2>
-
-<p>The 2020&ndash;2025 period produced an unprecedented number of authoritative reviews. The two most comprehensive are Chen et al. (2021) &mdash; a seminal review of the polymer informatics ecosystem &mdash; and Tran et al. (2024), which covers AI-enabled polymer design for energy storage, separation membranes, and sustainable/biodegradable polymers.</p>
-
-<p>Audus &amp; de Pablo (2023) highlighted unique polymer ML challenges including stochastic structure and representation difficulties. Ge et al. (2025) provided a comprehensive interdisciplinary review emphasizing FAIR data principles. Xie et al. (2025) compiled over 4,000 original reports through April 2024. Yue et al. (2025) reviewed ML-assisted molecular polymer design covering databases, representations, prediction, and generation.</p>
-
-<h3>References &mdash; Section 8</h3>
-
-<div class="table-wrapper">
+<hr />
+<h2 id="8-review-papers-and-perspectives">8. Review Papers and
+Perspectives</h2>
+<p>The 2020–2025 period produced an unprecedented number of
+authoritative reviews. The two most comprehensive are Chen et al. (2021)
+— a seminal review of the polymer informatics ecosystem — and Tran et
+al. (2024), which covers AI-enabled polymer design for energy storage,
+separation membranes, and sustainable/biodegradable polymers.</p>
+<p>Audus &amp; de Pablo (2023) highlighted unique polymer ML challenges
+including stochastic structure and representation difficulties. Ge et
+al. (2025) provided a comprehensive interdisciplinary review emphasizing
+FAIR data principles. Xie et al. (2025) compiled over 4,000 original
+reports through April 2024. Yue et al. (2025) reviewed ML-assisted
+molecular polymer design covering databases, representations,
+prediction, and generation.</p>
+<h3 id="references--section-8">References — Section 8</h3>
 <table>
 <thead>
-<tr><th>#</th><th>Title</th><th>Authors</th><th>Journal</th><th>Year</th><th>Link</th></tr>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Journal</th>
+<th>Year</th>
+<th>Link</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>65</td><td>Polymer informatics: Current status and critical next steps</td><td>Chen, L. et al.</td><td>Mater. Sci. Eng. R</td><td>2021</td><td><a href="https://doi.org/10.1016/j.mser.2020.100595">DOI</a></td></tr>
-<tr><td>66</td><td>Design of functional and sustainable polymers assisted by AI</td><td>Tran, H. et al.</td><td>Nature Reviews Materials</td><td>2024</td><td><a href="https://doi.org/10.1038/s41578-024-00708-8">DOI</a></td></tr>
-<tr><td>67</td><td>Emerging trends in ML: A polymer perspective</td><td>Audus, D.J. &amp; de Pablo, J.J.</td><td>ACS Polymers Au</td><td>2023</td><td><a href="https://doi.org/10.1021/acspolymersau.2c00053">DOI</a></td></tr>
-<tr><td>68</td><td>Machine learning in polymer research</td><td>Ge, W. et al.</td><td>Advanced Materials</td><td>2025</td><td><a href="https://doi.org/10.1002/adma.202413695">DOI</a></td></tr>
-<tr><td>69</td><td>ML approaches in polymer science: progress and fundamentals</td><td>Xie, Y. et al.</td><td>SmartMat</td><td>2025</td><td><a href="https://doi.org/10.1002/smm2.1320">DOI</a></td></tr>
-<tr><td>70</td><td>ML-assisted molecular design of innovative polymers</td><td>Yue, T. et al.</td><td>Accounts of Materials Research</td><td>2025</td><td><a href="https://doi.org/10.1021/accountsmr.5c00151">DOI</a></td></tr>
-<tr><td>71</td><td>A review on molecular descriptors and ML in polymer design</td><td>Zhao, Y. et al.</td><td>Polymer Chemistry</td><td>2023</td><td><a href="https://doi.org/10.1039/D3PY00395G">DOI</a></td></tr>
-<tr><td>72</td><td>Recent advances in experiment-oriented polymer informatics</td><td>Hatakeyama-Sato, K.</td><td>Polymer Journal</td><td>2023</td><td><a href="https://doi.org/10.1038/s41428-022-00734-9">DOI</a></td></tr>
-<tr><td>73</td><td>Machine learning in polymer informatics</td><td>Sha, W. et al.</td><td>InfoMat</td><td>2021</td><td><a href="https://doi.org/10.1002/inf2.12167">DOI</a></td></tr>
-<tr><td>74</td><td>New opportunity: ML for polymer materials design and discovery</td><td>Xu, L. et al.</td><td>Adv. Theory Simul.</td><td>2022</td><td><a href="https://doi.org/10.1002/adts.202100565">DOI</a></td></tr>
-<tr><td>75</td><td>ML-assisted design of advanced polymeric materials</td><td>Wang, L. et al.</td><td>Accounts of Materials Research</td><td>2024</td><td><a href="https://doi.org/10.1021/accountsmr.3c00288">DOI</a></td></tr>
-<tr><td>76</td><td>Data-driven methods for accelerating polymer design</td><td>Batra, R.</td><td>ACS Polymers Au</td><td>2022</td><td><a href="https://doi.org/10.1021/acspolymersau.1c00035">DOI</a></td></tr>
-<tr><td>77</td><td>A prospective on ML challenges in polymer science</td><td>Abu-Mualla, J. et al.</td><td>MRS Communications</td><td>2024</td><td><a href="https://doi.org/10.1557/s43579-024-00587-8">DOI</a></td></tr>
-<tr><td>78</td><td>Data-efficient ML for polymer informatics</td><td>Xu, X.-Y. et al.</td><td>Chinese J. Polymer Science</td><td>2025</td><td><a href="https://doi.org/10.1007/s10118-025-3401-z">DOI</a></td></tr>
+<tr>
+<td>65</td>
+<td>Polymer informatics: Current status and critical next steps</td>
+<td>Chen, L. et al.</td>
+<td>Mater. Sci. Eng. R</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1016/j.mser.2020.100595">DOI</a></td>
+</tr>
+<tr>
+<td>66</td>
+<td>Design of functional and sustainable polymers assisted by AI</td>
+<td>Tran, H. et al.</td>
+<td>Nature Reviews Materials</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1038/s41578-024-00708-8">DOI</a></td>
+</tr>
+<tr>
+<td>67</td>
+<td>Emerging trends in ML: A polymer perspective</td>
+<td>Audus, D.J. &amp; de Pablo, J.J.</td>
+<td>ACS Polymers Au</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1021/acspolymersau.2c00053">DOI</a></td>
+</tr>
+<tr>
+<td>68</td>
+<td>Machine learning in polymer research</td>
+<td>Ge, W. et al.</td>
+<td>Advanced Materials</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1002/adma.202413695">DOI</a></td>
+</tr>
+<tr>
+<td>69</td>
+<td>ML approaches in polymer science: progress and fundamentals</td>
+<td>Xie, Y. et al.</td>
+<td>SmartMat</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1002/smm2.1320">DOI</a></td>
+</tr>
+<tr>
+<td>70</td>
+<td>ML-assisted molecular design of innovative polymers</td>
+<td>Yue, T. et al.</td>
+<td>Accounts of Materials Research</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1021/accountsmr.5c00151">DOI</a></td>
+</tr>
+<tr>
+<td>71</td>
+<td>A review on molecular descriptors and ML in polymer design</td>
+<td>Zhao, Y. et al.</td>
+<td>Polymer Chemistry</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1039/D3PY00395G">DOI</a></td>
+</tr>
+<tr>
+<td>72</td>
+<td>Recent advances in experiment-oriented polymer informatics</td>
+<td>Hatakeyama-Sato, K.</td>
+<td>Polymer Journal</td>
+<td>2023</td>
+<td><a href="https://doi.org/10.1038/s41428-022-00734-9">DOI</a></td>
+</tr>
+<tr>
+<td>73</td>
+<td>Machine learning in polymer informatics</td>
+<td>Sha, W. et al.</td>
+<td>InfoMat</td>
+<td>2021</td>
+<td><a href="https://doi.org/10.1002/inf2.12167">DOI</a></td>
+</tr>
+<tr>
+<td>74</td>
+<td>New opportunity: ML for polymer materials design and discovery</td>
+<td>Xu, L. et al.</td>
+<td>Adv. Theory Simul.</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1002/adts.202100565">DOI</a></td>
+</tr>
+<tr>
+<td>75</td>
+<td>ML-assisted design of advanced polymeric materials</td>
+<td>Wang, L. et al.</td>
+<td>Accounts of Materials Research</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1021/accountsmr.3c00288">DOI</a></td>
+</tr>
+<tr>
+<td>76</td>
+<td>Data-driven methods for accelerating polymer design</td>
+<td>Batra, R.</td>
+<td>ACS Polymers Au</td>
+<td>2022</td>
+<td><a href="https://doi.org/10.1021/acspolymersau.1c00035">DOI</a></td>
+</tr>
+<tr>
+<td>77</td>
+<td>A prospective on ML challenges in polymer science</td>
+<td>Abu-Mualla, J. et al.</td>
+<td>MRS Communications</td>
+<td>2024</td>
+<td><a href="https://doi.org/10.1557/s43579-024-00587-8">DOI</a></td>
+</tr>
+<tr>
+<td>78</td>
+<td>Data-efficient ML for polymer informatics</td>
+<td>Xu, X.-Y. et al.</td>
+<td>Chinese J. Polymer Science</td>
+<td>2025</td>
+<td><a href="https://doi.org/10.1007/s10118-025-3401-z">DOI</a></td>
+</tr>
 </tbody>
 </table>
-</div>
-
-<hr>
-
+<hr />
 <h2 id="conclusions-and-outlook">Conclusions and Outlook</h2>
+<p>This literature review catalogues <strong>78 unique papers from
+2020–2025</strong> spanning all major dimensions of AI/ML-driven polymer
+design. Three key insights emerge:</p>
+<p><strong>First, the toolbox is mature but unevenly applied.</strong>
+Transformer-based models (polyBERT, TransPolymer, PolyNC), graph neural
+networks (polyGNN, wD-MPNN), and generative frameworks (VAEs, diffusion
+models, RL pipelines) have demonstrated remarkable capability — yet the
+overwhelming majority of applications target dielectrics, electrolytes,
+and gas separation membranes. Biodegradable polymers (PLA, PHA, PCL,
+PBAT, starch-based, cellulose-based systems) remain dramatically
+underserved by generative AI despite being among the most societally
+urgent materials challenges.</p>
+<p><strong>Second, data remains the binding constraint for biodegradable
+polymer AI.</strong> While NLP pipelines can now extract over one
+million polymer-property records, biodegradation-specific data is sparse
+and heterogeneous. The first regression model for aquatic biodegradation
+appeared only in 2025 (Huang et al.), achieving a modest R² of 0.66. The
+community needs standardized biodegradation datasets — covering
+composting, soil, marine, and anaerobic conditions — to unlock the full
+power of modern ML architectures.</p>
+<p><strong>Third, the integration of generative design with
+retrosynthesis and experimental validation represents the
+frontier.</strong> Llamole's retrosynthesis success rate of 17.9% for
+polymers and Park et al.'s experimental validation of AI-designed ROP
+catalysts demonstrate that end-to-end pipelines are feasible. Applying
+these integrated approaches to biodegradable polymer design, where
+synthesis feasibility and environmental degradation must be
+co-optimized, represents the most impactful direction for future
+research.</p>
+<p>The field is poised for rapid advancement: foundation models
+pre-trained on millions of polymer structures can be fine-tuned on small
+biodegradation datasets via transfer learning, multi-objective Bayesian
+optimization can balance degradability against mechanical performance,
+and LLM-assisted retrosynthesis can ensure generated candidates are
+synthetically accessible.</p>
 
-<p>This literature review catalogues <strong>78 unique papers from 2020&ndash;2025</strong> spanning all major dimensions of AI/ML-driven polymer design. Three key insights emerge:</p>
 
-<p><strong>First, the toolbox is mature but unevenly applied.</strong> Transformer-based models (polyBERT, TransPolymer, PolyNC), graph neural networks (polyGNN, wD-MPNN), and generative frameworks (VAEs, diffusion models, RL pipelines) have demonstrated remarkable capability &mdash; yet the overwhelming majority of applications target dielectrics, electrolytes, and gas separation membranes. Biodegradable polymers (PLA, PHA, PCL, PBAT, starch-based, cellulose-based systems) remain dramatically underserved by generative AI despite being among the most societally urgent materials challenges.</p>
-
-<p><strong>Second, data remains the binding constraint for biodegradable polymer AI.</strong> While NLP pipelines can now extract over one million polymer-property records, biodegradation-specific data is sparse and heterogeneous. The first regression model for aquatic biodegradation appeared only in 2025 (Huang et al.), achieving a modest R&sup2; of 0.66. The community needs standardized biodegradation datasets &mdash; covering composting, soil, marine, and anaerobic conditions &mdash; to unlock the full power of modern ML architectures.</p>
-
-<p><strong>Third, the integration of generative design with retrosynthesis and experimental validation represents the frontier.</strong> Llamole&rsquo;s retrosynthesis success rate of 17.9% for polymers and Park et al.&rsquo;s experimental validation of AI-designed ROP catalysts demonstrate that end-to-end pipelines are feasible. Applying these integrated approaches to biodegradable polymer design, where synthesis feasibility and environmental degradation must be co-optimized, represents the most impactful direction for future research.</p>
-
-<p>The field is poised for rapid advancement: foundation models pre-trained on millions of polymer structures can be fine-tuned on small biodegradation datasets via transfer learning, multi-objective Bayesian optimization can balance degradability against mechanical performance, and LLM-assisted retrosynthesis can ensure generated candidates are synthetically accessible.</p>
+</main>
 
 </body>
 </html>
